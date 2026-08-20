@@ -103,6 +103,50 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="mb-12">
+                    <h2 class="mb-4 text-xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">Provas realizadas</h2>
+
+                    <div class="glass-card overflow-hidden">
+                        @if ($finishedAttempts->isNotEmpty())
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-sm">
+                                    <thead class="border-b border-[#e3e3e0] bg-[#FDFDFC] dark:border-[#3E3E3A] dark:bg-[#0a0a0a]">
+                                        <tr>
+                                            <th class="px-6 py-3 font-medium text-[#706f6c] dark:text-[#A1A09A]">Data</th>
+                                            <th class="px-6 py-3 font-medium text-[#706f6c] dark:text-[#A1A09A]">Prova</th>
+                                            <th class="px-6 py-3 font-medium text-[#706f6c] dark:text-[#A1A09A]">Resultado</th>
+                                            <th class="px-6 py-3 text-right font-medium text-[#706f6c] dark:text-[#A1A09A]"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-[#e3e3e0] dark:divide-[#3E3E3A]">
+                                        @foreach ($finishedAttempts as $attempt)
+                                            <tr>
+                                                <td class="whitespace-nowrap px-6 py-4 text-[#1b1b18] dark:text-[#EDEDEC]">
+                                                    {{ $attempt->finished_at->format('d/m/Y H:i') }}
+                                                </td>
+                                                <td class="px-6 py-4 text-[#1b1b18] dark:text-[#EDEDEC]">{{ $attempt->exam->name }}</td>
+                                                <td class="px-6 py-4 font-semibold text-[#f53003] dark:text-[#FF4433]">{{ $attempt->percentage }}%</td>
+                                                <td class="whitespace-nowrap px-6 py-4 text-right">
+                                                    <a
+                                                        href="{{ route('attempts.result', $attempt) }}"
+                                                        class="inline-flex items-center gap-1 rounded-lg border border-[#e3e3e0] bg-white px-3 py-1.5 text-xs font-medium text-[#1b1b18] transition hover:border-[#f53003]/30 dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC]"
+                                                    >
+                                                        Ver resultado
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            <div class="px-6 py-10 text-center">
+                                <p class="text-[#706f6c] dark:text-[#A1A09A]">Você ainda não realizou nenhuma prova.</p>
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
         </section>
     </main>
