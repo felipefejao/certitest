@@ -1,0 +1,25 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Attempt;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+
+/**
+ * @extends Factory<Attempt>
+ */
+class AttemptFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'public_token' => (string) Str::uuid(),
+        ];
+    }
+}

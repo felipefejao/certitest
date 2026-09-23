@@ -54,10 +54,32 @@
                         </a>
                     </div>
 
+                    <div class="shareable-card mt-8 overflow-hidden rounded-2xl border border-[#e3e3e0] bg-white/80 shadow-sm dark:border-[#3E3E3A] dark:bg-[#161615]/80">
+                        <img
+                            src="{{ route('results.image', $attempt->public_token) }}"
+                            alt="Card de resultado do CertiTest"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                        <div class="flex items-center justify-between gap-4 border-t border-[#e3e3e0] p-4 dark:border-[#3E3E3A]">
+                            <p class="text-sm text-[#706f6c] dark:text-[#A1A09A]">Compartilhe seu resultado</p>
+                            <a
+                                href="{{ route('results.image', $attempt->public_token) }}"
+                                download="resultado-certitest.png"
+                                class="inline-flex items-center gap-2 rounded-lg border border-[#e3e3e0] bg-white px-4 py-2 text-sm font-medium text-[#1b1b18] transition hover:border-[#f53003]/30 dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC]"
+                            >
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                </svg>
+                                Baixar imagem
+                            </a>
+                        </div>
+                    </div>
+
                     <x-share-result
                         :title="'Meu resultado no CertiTest'"
-                        :description="'Tirei '.$attempt->percentage.'% no simulado '.$exam['name'].'! Acertos: '.$attempt->correct_answers.' de '.$attempt->total_questions.'.'"
-                        :url="route('home')"
+                        :description="'Acabei de fazer o simulado '.$exam['name'].' no CertiTest e consegui '.round($attempt->percentage, 0).'% de aproveitamento! 🚀'.'\n'.'Teste seus conhecimentos também.'"
+                        :url="route('results.public', $attempt->public_token)"
                     />
                 </div>
             </div>
