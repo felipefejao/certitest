@@ -1,0 +1,70 @@
+{
+    "name": "CertiTest",
+    "description": "Aplicação de exames de certificação feita com Laravel e Filament.",
+    "keywords": [
+        "laravel",
+        "filament",
+        "php"
+    ],
+    "repository": "https://github.com/felipefejao/certitest",
+    "website": "https://github.com/felipefejao/certitest",
+    "success_url": "/",
+    "env": {
+        "APP_NAME": {
+            "value": "CertiTest"
+        },
+        "APP_ENV": {
+            "value": "production"
+        },
+        "APP_DEBUG": {
+            "value": "false"
+        },
+        "APP_KEY": {
+            "description": "Chave de criptografia do Laravel (opcional). Gere com `php artisan key:generate --show`. Se deixada vazia, uma chave temporária é gerada a cada boot (sessões são invalidadas em reinícios).",
+            "required": false
+        },
+        "DB_CONNECTION": {
+            "value": "pgsql"
+        },
+        "DB_SSLMODE": {
+            "value": "require"
+        },
+        "LOG_CHANNEL": {
+            "value": "stderr"
+        },
+        "SESSION_DRIVER": {
+            "value": "database"
+        },
+        "CACHE_STORE": {
+            "value": "database"
+        },
+        "QUEUE_CONNECTION": {
+            "value": "database"
+        },
+        "MAIL_MAILER": {
+            "value": "log"
+        }
+    },
+    "formation": {
+        "web": {
+            "quantity": 1,
+            "size": "eco"
+        }
+    },
+    "addons": [
+        {
+            "plan": "heroku-postgresql:essential-0"
+        }
+    ],
+    "buildpacks": [
+        {
+            "url": "heroku/nodejs"
+        },
+        {
+            "url": "heroku/php"
+        }
+    ],
+    "scripts": {
+        "postdeploy": "php artisan db:seed --force"
+    }
+}

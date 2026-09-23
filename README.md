@@ -1,3 +1,31 @@
+# CertiTest
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/felipefejao/certitest)
+
+## Deploy no Heroku
+
+Clique no botão acima para criar e fazer o deploy automático da aplicação no Heroku. O botão provisiona:
+
+- **Dyno web** no plano `eco` (plano mais barato do Heroku)
+- **Banco PostgreSQL** no plano `heroku-postgresql:essential-0` (~US$5/mês, o mais barato disponível)
+- Buildpacks `heroku/nodejs` (compila os assets com Vite) e `heroku/php`
+
+As migrations rodam automaticamente a cada deploy (release phase) e o banco é populado com dados de exemplo no primeiro deploy. Usuários criados pelo seed (senha: `password`):
+
+- `admin@example.com` (admin)
+- `candidate@example.com` (candidate)
+
+### APP_KEY
+
+Se o campo `APP_KEY` for deixado vazio na tela de deploy, uma chave temporária é gerada a cada boot (sessões são invalidadas ao reiniciar). Para uma chave persistente, gere localmente e configure:
+
+```bash
+php artisan key:generate --show
+heroku config:set APP_KEY="base64:..." -a <nome-do-app>
+```
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
