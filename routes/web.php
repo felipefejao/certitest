@@ -6,9 +6,13 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SharedResultController;
+use App\Http\Controllers\ThemeSuggestionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
+Route::post('/sugestoes', [ThemeSuggestionController::class, 'store'])
+    ->middleware('throttle:5,1')
+    ->name('suggestions.store');
 
 Route::get('/result/{public_token}', [SharedResultController::class, 'show'])->name('results.public');
 Route::get('/result/{public_token}/image', [SharedResultController::class, 'image'])->name('results.image');

@@ -26,6 +26,10 @@ class HomeController extends Controller
             'attempts' => 0,
         ];
 
-        return view('home', compact('exams', 'stats'));
+        $captcha = [fake()->numberBetween(1, 9), fake()->numberBetween(1, 9)];
+        $request->session()->put('suggestion_captcha_answer', $captcha[0] + $captcha[1]);
+        $captchaQuestion = "Quanto é {$captcha[0]} + {$captcha[1]}?";
+
+        return view('home', compact('exams', 'stats', 'captchaQuestion'));
     }
 }

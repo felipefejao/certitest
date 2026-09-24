@@ -11,6 +11,13 @@
             <div class="mx-auto flex max-w-6xl items-center justify-between">
                 <span class="text-xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">CertiTest</span>
                 <div class="flex items-center gap-4">
+                    <button
+                        type="button"
+                        onclick="openSuggestionModal()"
+                        class="text-sm font-medium text-[#1b1b18] hover:text-[#f53003] dark:text-[#EDEDEC] dark:hover:text-[#FF4433]"
+                    >
+                        Sugerir tema
+                    </button>
                     @auth
                         <a href="{{ route('dashboard') }}" class="text-sm font-medium text-[#1b1b18] hover:text-[#f53003] dark:text-[#EDEDEC] dark:hover:text-[#FF4433]">Dashboard</a>
                         <form method="POST" action="{{ route('logout') }}" class="inline">
@@ -212,6 +219,17 @@
                         <p class="mt-2 text-sm text-[#706f6c] dark:text-[#A1A09A]">Volte em breve para conferir as novidades.</p>
                     </div>
                 @endif
+
+                <div class="mt-12 text-center">
+                    <p class="text-sm text-[#706f6c] dark:text-[#A1A09A]">Não encontrou o tema que procura?</p>
+                    <button
+                        type="button"
+                        onclick="openSuggestionModal()"
+                        class="mt-3 inline-flex items-center justify-center rounded-lg border border-[#e3e3e0] bg-white/80 px-6 py-2.5 text-sm font-semibold text-[#1b1b18] backdrop-blur transition hover:border-[#f53003]/30 hover:bg-white dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC] dark:hover:bg-[#1a1a19]"
+                    >
+                        Sugerir tema de prova
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -255,9 +273,119 @@
                 <div class="flex gap-6">
                     <a href="#" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">Termos de uso</a>
                     <a href="#" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">Privacidade</a>
-                    <a href="https://dev7.com.br" target="_blank" rel="noopener noreferrer" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">Mais uma solução De7</a>
+                    <a href="https://dev7.com.br" target="_blank" rel="noopener noreferrer" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">Mais uma solução Dev7</a>
                 </div>
             </div>
         </footer>
+
+        @if (session('suggestion_success'))
+            <div class="fixed bottom-6 right-6 z-50 rounded-lg bg-green-600 px-5 py-3 text-sm font-medium text-white shadow-lg">
+                {{ session('suggestion_success') }}
+            </div>
+        @endif
+
+        <div id="suggestion-modal" data-auto-open="{{ session('suggestion_success') ? '0' : '1' }}" class="{{ $errors->hasAny(['theme', 'email', 'captcha', 'website']) ? '' : 'hidden' }} fixed inset-0 z-50 flex items-center justify-center px-4">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#f53003]/30 via-black/40 to-black/50 backdrop-blur-sm" onclick="closeSuggestionModal()"></div>
+
+            <div class="glass-card relative w-full max-w-md p-8 shadow-2xl ring-2 ring-[#f53003]/40 dark:ring-[#FF4433]/40">
+                <div class="mb-6 flex items-start justify-between">
+                    <div>
+                        <h3 class="text-lg font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">Sugerir tema de prova</h3>
+                        <p class="mt-1 text-sm text-[#706f6c] dark:text-[#A1A09A]">Conte qual certificação ou tema você gostaria de ver por aqui.</p>
+                    </div>
+                    <button type="button" onclick="closeSuggestionModal()" class="text-[#706f6c] transition hover:text-[#1b1b18] dark:text-[#A1A09A] dark:hover:text-[#EDEDEC]">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+
+                <form method="POST" action="{{ route('suggestions.store') }}" class="space-y-4">
+                    @csrf
+
+                    <div>
+                        <label for="suggestion-theme" class="mb-1.5 block text-sm font-medium text-[#1b1b18] dark:text-[#EDEDEC]">Tema da prova</label>
+                        <input
+                            type="text"
+                            id="suggestion-theme"
+                            name="theme"
+                            value="{{ old('theme') }}"
+                            required
+                            maxlength="255"
+                            placeholder="Ex.: AWS Cloud Practitioner"
+                            class="w-full rounded-lg border border-[#e3e3e0] bg-white/70 px-3.5 py-2.5 text-sm text-[#1b1b18] outline-none transition placeholder:text-[#A1A09A] focus:border-[#f53003] dark:border-[#3E3E3A] dark:bg-[#161615]/70 dark:text-[#EDEDEC] dark:focus:border-[#FF4433]"
+                        >
+                        @error('theme')
+                            <p class="mt-1.5 text-xs text-red-600 dark:text-red-400">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label for="suggestion-email" class="mb-1.5 block text-sm font-medium text-[#1b1b18] dark:text-[#EDEDEC]">Seu e-mail</label>
+                        <input
+                            type="email"
+                            id="suggestion-email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                            maxlength="255"
+                            placeholder="voce@exemplo.com"
+                            class="w-full rounded-lg border border-[#e3e3e0] bg-white/70 px-3.5 py-2.5 text-sm text-[#1b1b18] outline-none transition placeholder:text-[#A1A09A] focus:border-[#f53003] dark:border-[#3E3E3A] dark:bg-[#161615]/70 dark:text-[#EDEDEC] dark:focus:border-[#FF4433]"
+                        >
+                        @error('email')
+                            <p class="mt-1.5 text-xs text-red-600 dark:text-red-400">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label for="suggestion-captcha" class="mb-1.5 block text-sm font-medium text-[#1b1b18] dark:text-[#EDEDEC]">{{ $captchaQuestion }}</label>
+                        <input
+                            type="number"
+                            id="suggestion-captcha"
+                            name="captcha"
+                            required
+                            class="w-full rounded-lg border border-[#e3e3e0] bg-white/70 px-3.5 py-2.5 text-sm text-[#1b1b18] outline-none transition focus:border-[#f53003] dark:border-[#3E3E3A] dark:bg-[#161615]/70 dark:text-[#EDEDEC] dark:focus:border-[#FF4433]"
+                        >
+                        @error('captcha')
+                            <p class="mt-1.5 text-xs text-red-600 dark:text-red-400">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off">
+                    @error('website')
+                        <p class="text-xs text-red-600 dark:text-red-400">{{ $message }}</p>
+                    @enderror
+
+                    <div class="flex justify-end gap-3 pt-2">
+                        <button type="button" onclick="closeSuggestionModal()" class="rounded-lg px-4 py-2.5 text-sm font-medium text-[#706f6c] transition hover:text-[#1b1b18] dark:text-[#A1A09A] dark:hover:text-[#EDEDEC]">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="rounded-lg bg-[#f53003] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[#d62b04] dark:bg-[#FF4433] dark:hover:bg-[#f53003]">
+                            Enviar sugestão
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            const suggestionModal = document.getElementById('suggestion-modal');
+
+            function openSuggestionModal() {
+                suggestionModal.classList.remove('hidden');
+            }
+
+            function closeSuggestionModal() {
+                suggestionModal.classList.add('hidden');
+            }
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    closeSuggestionModal();
+                }
+            });
+
+            if (suggestionModal.dataset.autoOpen === '1') {
+                openSuggestionModal();
+            }
+        </script>
     </main>
 @endsection
