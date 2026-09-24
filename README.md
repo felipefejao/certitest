@@ -6,7 +6,7 @@
 
 Clique no botão acima para criar e fazer o deploy automático da aplicação no Heroku. O botão provisiona:
 
-- **Dyno web** no plano `eco` (plano mais barato do Heroku)
+- **Dyno web** no plano `basic` (~US$7/mês, cobrado por segundo de uso — `heroku ps:scale web=0` zera o custo)
 - **Banco PostgreSQL** no plano `heroku-postgresql:essential-0` (~US$5/mês, o mais barato disponível)
 - Buildpacks `heroku/nodejs` (compila os assets com Vite) e `heroku/php`
 
