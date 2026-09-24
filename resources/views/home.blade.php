@@ -255,6 +255,7 @@
                 <div class="flex gap-6">
                     <a href="#" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">Termos de uso</a>
                     <a href="#" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">Privacidade</a>
+                    <a href="https://dev7.com.br" target="_blank" rel="noopener noreferrer" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">Mais uma solução De7</a>
                 </div>
             </div>
         </footer>
