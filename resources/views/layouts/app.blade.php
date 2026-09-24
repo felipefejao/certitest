@@ -4,6 +4,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCHXPC53GX"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-XCHXPC53GX');
+        </script>
+
         <title>@yield('title', config('app.name', 'Laravel'))</title>
 
         <meta name="description" content="@yield('description', 'Teste seus conhecimentos e prepare-se para certificações com o CertiTest.')">
