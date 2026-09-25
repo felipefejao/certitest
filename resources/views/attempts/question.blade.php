@@ -28,17 +28,26 @@
                     </div>
                 </div>
 
-                <div class="mb-6 grid grid-cols-4 gap-2 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10">
-                    @foreach ($progress as $item)
-                        <a
-                            href="{{ route('attempts.question', ['attempt' => $attempt, 'index' => $item['index']]) }}"
-                            class="flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium transition
-                                {{ $item['index'] === $index ? 'bg-[#f53003] text-white dark:bg-[#FF4433]' : ($item['answered'] ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-white text-[#706f6c] dark:bg-[#161615] dark:text-[#A1A09A]') }}"
-                        >
-                            {{ $item['index'] + 1 }}
-                        </a>
-                    @endforeach
-                </div>
+                <details class="group mb-6">
+                    <summary class="flex cursor-pointer list-none items-center justify-between rounded-lg border border-[#e3e3e0] bg-white/80 px-4 py-2.5 text-sm font-medium text-[#1b1b18] transition hover:border-[#f53003]/30 dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC] [&::-webkit-details-marker]:hidden">
+                        <span>Visualizar questões</span>
+                        <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </summary>
+
+                    <div class="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10">
+                        @foreach ($progress as $item)
+                            <a
+                                href="{{ route('attempts.question', ['attempt' => $attempt, 'index' => $item['index']]) }}"
+                                class="flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium transition
+                                    {{ $item['index'] === $index ? 'bg-[#f53003] text-white dark:bg-[#FF4433]' : ($item['answered'] ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-white text-[#706f6c] dark:bg-[#161615] dark:text-[#A1A09A]') }}"
+                            >
+                                {{ $item['index'] + 1 }}
+                            </a>
+                        @endforeach
+                    </div>
+                </details>
 
                 <div class="glass-card p-6 lg:p-10">
                     <h1 class="mb-8 text-xl font-semibold leading-relaxed text-[#1b1b18] dark:text-[#EDEDEC]">{{ $question['question'] }}</h1>
