@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\ExamStatus;
 use App\Models\Exam;
+use App\Models\ExamCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,11 +17,14 @@ class ExamSeeder extends Seeder
      */
     public function run(): void
     {
+        $backendId = ExamCategory::where('slug', 'backend')->value('id');
+
         $exams = [
             [
                 'name' => 'PHP Fundamentals',
                 'slug' => 'php-fundamentals',
                 'description' => 'Teste seus conhecimentos fundamentais em PHP com questões práticas e conceituais.',
+                'exam_category_id' => $backendId,
                 'status' => ExamStatus::Published,
                 'questions' => $this->phpQuestions(),
             ],
@@ -28,6 +32,7 @@ class ExamSeeder extends Seeder
                 'name' => 'Laravel Fundamentals',
                 'slug' => 'laravel-fundamentals',
                 'description' => 'Avalie sua compreensão dos conceitos essenciais do ecossistema Laravel.',
+                'exam_category_id' => $backendId,
                 'status' => ExamStatus::Published,
                 'questions' => $this->laravelQuestions(),
             ],

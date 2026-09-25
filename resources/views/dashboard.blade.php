@@ -46,8 +46,25 @@
                 </div>
 
                 <div class="mb-12 grid gap-8 lg:grid-cols-3">
-                    <div class="lg:col-span-2">
-                        <h2 class="mb-4 text-xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">Provas disponíveis</h2>
+                    <div class="lg:col-span-2" id="exams">
+                        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+                            <h2 class="text-xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">Provas disponíveis</h2>
+
+                            @if ($categories->isNotEmpty())
+                                <form method="GET" action="{{ route('dashboard') }}#exams">
+                                    <select
+                                        name="categoria"
+                                        onchange="this.form.submit()"
+                                        class="rounded-lg border border-[#e3e3e0] bg-white/80 px-4 py-2 text-sm font-medium text-[#1b1b18] outline-none transition focus:border-[#f53003] dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC] dark:focus:border-[#FF4433]"
+                                    >
+                                        <option value="">Todas as categorias</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->slug }}" @selected($selectedCategory === $category->slug)>{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
+                            @endif
+                        </div>
 
                         @if ($availableExams->isNotEmpty())
                             <div class="grid gap-4 sm:grid-cols-2">
@@ -59,6 +76,11 @@
                                                 {{ $exam['questions_count'] }} questões
                                             </span>
                                         </div>
+                                        @if ($exam['category'])
+                                            <span class="mb-2 inline-flex w-fit rounded-full border border-[#e3e3e0] px-2.5 py-0.5 text-xs font-medium text-[#706f6c] dark:border-[#3E3E3A] dark:text-[#A1A09A]">
+                                                {{ $exam['category'] }}
+                                            </span>
+                                        @endif
                                         <p class="mb-4 flex-1 text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ $exam['description'] }}</p>
                                         <a
                                             href="{{ route('exams.show', $exam['slug']) }}"

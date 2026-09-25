@@ -54,6 +54,12 @@
                             Cancelar
                         </a>
                     </div>
+
+                    <x-share-result
+                        :title="$exam['name'].' — CertiTest'"
+                        :description="'Faça o simulado '.$exam['name'].' no CertiTest e teste seus conhecimentos!'"
+                        :url="route('exams.show', $exam['slug'])"
+                    />
                 </div>
             </div>
         </section>
