@@ -23,6 +23,11 @@ class ExamsTable
                     ->searchable()
                     ->sortable(),
 
+                TextColumn::make('category.name')
+                    ->label('Categoria')
+                    ->placeholder('—')
+                    ->sortable(),
+
                 TextColumn::make('status')
                     ->label('Status')
                     ->badge()
@@ -49,6 +54,12 @@ class ExamsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                SelectFilter::make('exam_category_id')
+                    ->label('Categoria')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload(),
+
                 SelectFilter::make('status')
                     ->label('Status')
                     ->options([

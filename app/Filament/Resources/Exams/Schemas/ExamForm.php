@@ -34,6 +34,26 @@ class ExamForm
                     ->rows(3)
                     ->columnSpanFull(),
 
+                Select::make('exam_category_id')
+                    ->label('Categoria')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->label('Nome')
+                            ->required()
+                            ->maxLength(255)
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn ($state, $set) => $set('slug', Str::slug((string) $state))),
+                        TextInput::make('slug')
+                            ->label('Slug')
+                            ->required()
+                            ->maxLength(255)
+                            ->unique('exam_categories', 'slug'),
+                    ])
+                    ->native(false),
+
                 Select::make('status')
                     ->label('Status')
                     ->options([
