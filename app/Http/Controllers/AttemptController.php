@@ -101,6 +101,23 @@ class AttemptController extends Controller
     {
         $this->authorizeAccess($attempt);
 
+        $validated = $request->validate([
+            'question_id' => ['nullable', 'string'],
+            'selected_answer' => ['nullable', 'string', 'in:A,B,C,D'],
+        ]);
+
+        if (! empty($validated['question_id'])) {
+            Answer::updateOrCreate(
+                [
+                    'attempt_id' => $attempt->id,
+                    'question_id' => $validated['question_id'],
+                ],
+                [
+                    'selected_answer' => $validated['selected_answer'] ?? null,
+                ]
+            );
+        }
+
         $attempt->finish();
 
         return redirect()->route('attempts.result', $attempt);

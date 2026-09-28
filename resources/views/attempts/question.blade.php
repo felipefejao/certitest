@@ -55,7 +55,7 @@
                 <div class="glass-card p-6 lg:p-10">
                     <h1 class="mb-8 text-xl font-semibold leading-relaxed text-[#1b1b18] dark:text-[#EDEDEC]">{{ $question['question'] }}</h1>
 
-                    <form method="POST" action="{{ route('attempts.question', ['attempt' => $attempt, 'index' => $index]) }}" class="space-y-4">
+                    <form id="attemptForm" method="POST" action="{{ route('attempts.question', ['attempt' => $attempt, 'index' => $index]) }}" class="space-y-4">
                         @csrf
                         <input type="hidden" name="question_id" value="{{ $question['id'] }}">
 
@@ -94,8 +94,8 @@
                                 </button>
                             @else
                                 <button
-                                    type="submit"
-                                    formaction="{{ route('attempts.submit', $attempt) }}"
+                                    type="button"
+                                    onclick="openFinishModal()"
                                     class="rounded-lg bg-[#f53003] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#d62b04] dark:bg-[#FF4433] dark:hover:bg-[#f53003]"
                                 >
                                     {{ __('ui.attempt.finish') }}
@@ -106,5 +106,61 @@
                 </div>
             </div>
         </section>
+
+        @if ($index + 1 === $total)
+            <div
+                id="finish-modal"
+                data-was-answered="{{ $selectedAnswer ? '1' : '0' }}"
+                data-previously-answered="{{ collect($progress)->where('answered', true)->count() }}"
+                class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 px-6"
+            >
+                <div class="w-full max-w-md rounded-2xl border border-[#e3e3e0] bg-white p-6 shadow-xl dark:border-[#3E3E3A] dark:bg-[#161615]">
+                    <h2 class="mb-2 text-lg font-bold text-[#1b1b18] dark:text-[#EDEDEC]">{{ __('ui.attempt.confirm_heading') }}</h2>
+                    <p class="mb-2 text-sm text-[#706f6c] dark:text-[#A1A09A]">
+                        {!! __('ui.attempt.answered_line', [
+                            'answered' => '<strong id="modal-answered-count" class="text-[#1b1b18] dark:text-[#EDEDEC]"></strong>',
+                            'total' => '<strong class="text-[#1b1b18] dark:text-[#EDEDEC]">'.$total.'</strong>',
+                        ]) !!}
+                    </p>
+                    <p class="mb-6 text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ __('ui.attempt.unanswered_note') }}</p>
+                    <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
+                        <button
+                            type="button"
+                            onclick="closeFinishModal()"
+                            class="inline-flex items-center justify-center rounded-lg border border-[#e3e3e0] bg-white/80 px-6 py-2.5 text-sm font-medium text-[#1b1b18] transition hover:border-[#f53003]/30 dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC]"
+                        >
+                            {{ __('ui.attempt.back') }}
+                        </button>
+                        <button
+                            type="submit"
+                            form="attemptForm"
+                            formaction="{{ route('attempts.submit', $attempt) }}"
+                            class="inline-flex items-center justify-center rounded-lg bg-[#f53003] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#d62b04] dark:bg-[#FF4433] dark:hover:bg-[#f53003]"
+                        >
+                            {{ __('ui.attempt.finish_exam') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                const finishModal = document.getElementById('finish-modal');
+                const wasAnswered = finishModal.dataset.wasAnswered === '1';
+                const previouslyAnswered = Number(finishModal.dataset.previouslyAnswered);
+
+                function openFinishModal() {
+                    const current = document.querySelector('input[name="selected_answer"]:checked');
+                    const answeredCount = previouslyAnswered - (wasAnswered ? 1 : 0) + (current ? 1 : 0);
+                    document.getElementById('modal-answered-count').textContent = answeredCount;
+                    finishModal.classList.remove('hidden');
+                    finishModal.classList.add('flex');
+                }
+
+                function closeFinishModal() {
+                    finishModal.classList.add('hidden');
+                    finishModal.classList.remove('flex');
+                }
+            </script>
+        @endif
     </main>
 @endsection
