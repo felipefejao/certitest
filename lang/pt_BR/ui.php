@@ -131,6 +131,10 @@ return [
         'share_title' => 'Meu resultado no CertiTest',
         'share_text' => 'Acabei de fazer o simulado :exam no CertiTest e consegui :score% de aproveitamento! 🚀',
         'share_cta' => 'Teste seus conhecimentos também.',
+        'review_wrong' => 'Questões para revisar',
+        'your_answer' => 'Sua resposta',
+        'correct_answer' => 'Resposta correta',
+        'not_answered' => 'Não respondida',
     ],
 
     'public_result' => [

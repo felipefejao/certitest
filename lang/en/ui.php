@@ -131,6 +131,10 @@ return [
         'share_title' => 'My result on CertiTest',
         'share_text' => 'I just took the :exam exam on CertiTest and scored :score%! 🚀',
         'share_cta' => 'Test your knowledge too.',
+        'review_wrong' => 'Questions to review',
+        'your_answer' => 'Your answer',
+        'correct_answer' => 'Correct answer',
+        'not_answered' => 'Not answered',
     ],
 
     'public_result' => [

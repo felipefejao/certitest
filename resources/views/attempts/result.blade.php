@@ -43,6 +43,30 @@
                         </div>
                     </div>
 
+                    @if ($wrongQuestions->isNotEmpty())
+                        <div class="mt-8 text-left">
+                            <h2 class="mb-4 text-lg font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">{{ __('ui.result.review_wrong') }}</h2>
+                            <div class="space-y-4">
+                                @foreach ($wrongQuestions as $item)
+                                    <div class="rounded-xl border border-[#e3e3e0] bg-white/50 p-4 dark:border-[#3E3E3A] dark:bg-[#161615]/50">
+                                        <p class="mb-3 text-sm font-medium leading-relaxed text-[#1b1b18] dark:text-[#EDEDEC]">{{ $item['number'] }}. {{ $item['question'] }}</p>
+                                        <p class="text-sm text-red-700 dark:text-red-400">
+                                            {{ __('ui.result.your_answer') }}:
+                                            @if ($item['selected_answer'])
+                                                {{ $item['selected_answer'] }}. {{ $item['options'][$item['selected_answer']] ?? '' }}
+                                            @else
+                                                {{ __('ui.result.not_answered') }}
+                                            @endif
+                                        </p>
+                                        <p class="text-sm text-green-700 dark:text-green-400">
+                                            {{ __('ui.result.correct_answer') }}: {{ $item['correct_answer'] }}. {{ $item['options'][$item['correct_answer']] ?? '' }}
+                                        </p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
                         <a
                             href="{{ route('dashboard') }}"

@@ -8,6 +8,7 @@ use App\Models\Attempt;
 use App\Models\Exam;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class AttemptController extends Controller
@@ -28,7 +29,7 @@ class AttemptController extends Controller
         return redirect()->route('attempts.question', ['attempt' => $attempt, 'index' => 0]);
     }
 
-    public function question(Request $request, Attempt $attempt, int $index): View
+    public function question(Request $request, Attempt $attempt, int $index): View|RedirectResponse
     {
         $this->authorizeAccess($attempt);
 
@@ -105,21 +106,47 @@ class AttemptController extends Controller
         return redirect()->route('attempts.result', $attempt);
     }
 
-    public function result(Request $request, Attempt $attempt): View
+    public function result(Request $request, Attempt $attempt): View|RedirectResponse
     {
         $this->authorizeAccess($attempt);
 
-        $attempt->load('exam');
+        if (! $attempt->isFinished()) {
+            return redirect()->route('attempts.question', ['attempt' => $attempt, 'index' => 0]);
+        }
+
+        $attempt->load('exam', 'answers');
+
+        $answersByQuestion = $attempt->answers->keyBy('question_id');
+
+        $wrongQuestions = collect($attempt->exam->questions ?? [])
+            ->map(function (array $question, int $index) use ($answersByQuestion) {
+                $answer = $answersByQuestion->get($question['id']);
+
+                if ($answer?->is_correct) {
+                    return null;
+                }
+
+                return [
+                    'number' => $index + 1,
+                    'question' => $question['question'],
+                    'selected_answer' => $answer?->selected_answer,
+                    'correct_answer' => $question['correct_answer'],
+                    'options' => $question['options'],
+                ];
+            })
+            ->filter()
+            ->values();
 
         return view('attempts.result', [
             'attempt' => $attempt,
             'exam' => $attempt->exam,
+            'wrongQuestions' => $wrongQuestions,
         ]);
     }
 
     private function authorizeAccess(Attempt $attempt): void
     {
-        if ($attempt->user_id !== auth()->id()) {
+        if ($attempt->user_id !== Auth::id()) {
             abort(403);
         }
     }
