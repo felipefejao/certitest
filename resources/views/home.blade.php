@@ -3,6 +3,10 @@
 @section('title', __('ui.home.meta_title'))
 @section('description', __('ui.home.meta_description'))
 
+@push('head')
+    <x-adsense-auto-ads />
+@endpush
+
 @section('content')
     <main class="relative overflow-hidden">
         <div class="absolute inset-0 -z-10 bg-gradient-to-br from-[#fff0ed] via-[#fffaf6] to-[#f0f9ff] dark:from-[#1a0a05] dark:via-[#0a0a0a] dark:to-[#0a0a0a]"></div>
