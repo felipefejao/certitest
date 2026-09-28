@@ -17,18 +17,18 @@ class ThemeSuggestionController extends Controller
             'captcha' => ['required', 'integer'],
             'website' => ['prohibited'],
         ], [
-            'theme.required' => 'Informe o tema da prova.',
-            'email.required' => 'Informe seu e-mail.',
-            'email.email' => 'Informe um e-mail válido.',
-            'captcha.required' => 'Responda à verificação.',
-            'website.prohibited' => 'Não foi possível enviar sua sugestão.',
+            'theme.required' => __('ui.suggestion.theme_required'),
+            'email.required' => __('ui.suggestion.email_required'),
+            'email.email' => __('ui.suggestion.email_invalid'),
+            'captcha.required' => __('ui.suggestion.captcha_required'),
+            'website.prohibited' => __('ui.suggestion.website_prohibited'),
         ]);
 
         $expected = $request->session()->pull('suggestion_captcha_answer');
 
         if ($expected === null || (int) $validated['captcha'] !== (int) $expected) {
             throw ValidationException::withMessages([
-                'captcha' => 'Resposta incorreta. Tente novamente.',
+                'captcha' => __('ui.suggestion.captcha_wrong'),
             ]);
         }
 
@@ -39,6 +39,6 @@ class ThemeSuggestionController extends Controller
 
         return redirect()
             ->route('home')
-            ->with('suggestion_success', 'Obrigado! Sua sugestão foi enviada.');
+            ->with('suggestion_success', __('ui.suggestion.success'));
     }
 }

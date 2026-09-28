@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $exam['name'].' — Questão '.($index + 1))
+@section('title', __('ui.attempt.meta_title', ['exam' => $exam['name'], 'number' => $index + 1]))
 
 @section('content')
     <main class="min-h-screen">
@@ -10,9 +10,12 @@
             <div class="mx-auto flex max-w-5xl items-center justify-between">
                 <div>
                     <p class="text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ $exam['name'] }}</p>
-                    <p class="text-xs text-[#706f6c] dark:text-[#A1A09A]">Questão {{ $index + 1 }} de {{ $total }}</p>
+                    <p class="text-xs text-[#706f6c] dark:text-[#A1A09A]">{{ __('ui.attempt.question_of', ['current' => $index + 1, 'total' => $total]) }}</p>
                 </div>
-                <a href="{{ route('attempts.confirm', $attempt) }}" class="text-sm font-medium text-[#f53003] hover:underline dark:text-[#FF4433]">Finalizar prova</a>
+                <div class="flex items-center gap-4">
+                    <a href="{{ route('attempts.confirm', $attempt) }}" class="text-sm font-medium text-[#f53003] hover:underline dark:text-[#FF4433]">{{ __('ui.attempt.finish_exam') }}</a>
+                    <x-language-selector />
+                </div>
             </div>
         </nav>
 
@@ -20,7 +23,7 @@
             <div class="mx-auto max-w-5xl">
                 <div class="mb-6">
                     <div class="mb-2 flex items-center justify-between text-sm text-[#706f6c] dark:text-[#A1A09A]">
-                        <span>Progresso</span>
+                        <span>{{ __('ui.attempt.progress') }}</span>
                         <span>{{ round((($index + 1) / $total) * 100) }}%</span>
                     </div>
                     <div class="h-2.5 w-full overflow-hidden rounded-full bg-[#e3e3e0] dark:bg-[#3E3E3A]">
@@ -30,7 +33,7 @@
 
                 <details class="group mb-6">
                     <summary class="flex cursor-pointer list-none items-center justify-between rounded-lg border border-[#e3e3e0] bg-white/80 px-4 py-2.5 text-sm font-medium text-[#1b1b18] transition hover:border-[#f53003]/30 dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC] [&::-webkit-details-marker]:hidden">
-                        <span>Visualizar questões</span>
+                        <span>{{ __('ui.attempt.view_questions') }}</span>
                         <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                         </svg>
@@ -77,7 +80,7 @@
                                 href="{{ $index > 0 ? route('attempts.question', ['attempt' => $attempt, 'index' => $index - 1]) : route('attempts.question', ['attempt' => $attempt, 'index' => $index]) }}"
                                 class="rounded-lg border border-[#e3e3e0] bg-white/80 px-6 py-2.5 text-sm font-medium text-[#1b1b18] transition hover:border-[#f53003]/30 dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC]"
                             >
-                                Anterior
+                                {{ __('ui.attempt.previous') }}
                             </a>
 
                             <input type="hidden" name="next_index" value="{{ $index + 1 < $total ? $index + 1 : $index }}">
@@ -87,7 +90,7 @@
                                     type="submit"
                                     class="rounded-lg bg-[#1b1b18] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-black dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white"
                                 >
-                                    Próxima
+                                    {{ __('ui.attempt.next') }}
                                 </button>
                             @else
                                 <button
@@ -95,7 +98,7 @@
                                     formaction="{{ route('attempts.submit', $attempt) }}"
                                     class="rounded-lg bg-[#f53003] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#d62b04] dark:bg-[#FF4433] dark:hover:bg-[#f53003]"
                                 >
-                                    Finalizar
+                                    {{ __('ui.attempt.finish') }}
                                 </button>
                             @endif
                         </div>

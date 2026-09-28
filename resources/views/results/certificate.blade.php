@@ -42,8 +42,8 @@
 
     <line x1="75" y1="125" x2="1125" y2="125" stroke="#c8bca6" stroke-width="1.5"/>
 
-    <text x="75" y="152" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="3" fill="#7a6f5c">OFFICIAL SIMULATED EXAM CERTIFICATE</text>
-    <text x="1125" y="152" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#2e2e2e">CANDIDATE: {{ $candidateName }}</text>
+    <text x="75" y="152" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="3" fill="#7a6f5c">{{ __('ui.certificate.heading') }}</text>
+    <text x="1125" y="152" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="bold" fill="#2e2e2e">{{ __('ui.certificate.candidate') }} {{ $candidateName }}</text>
 
     @foreach ($titleLines as $line)
         <text x="600" y="{{ 240 + $loop->index * 52 }}" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="40" fill="#3a3428">{{ $line }}</text>
@@ -56,12 +56,12 @@
         <rect x="{{ $barX }}" y="347" width="{{ $barWidth * ($correct / $total) }}" height="24" rx="12" fill="#c2573a"/>
     @endif
 
-    <text x="600" y="435" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" fill="#3a3428">{{ $correct }}/{{ $total }} correct answers</text>
-    <text x="600" y="472" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#3a3428">Test your knowledge on CertiTest</text>
+    <text x="600" y="435" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" fill="#3a3428">{{ __('ui.certificate.score_line', ['correct' => $correct, 'total' => $total]) }}</text>
+    <text x="600" y="472" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#3a3428">{{ __('ui.certificate.tagline') }}</text>
 
     <path d="M140 478 q6 -6 12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0" fill="none" stroke="#3a3428" stroke-width="1.5"/>
     <text x="140" y="468" font-family="'Brush Script MT', 'Segoe Script', cursive" font-size="36" fill="#3a3428">CertiTest</text>
-    <text x="140" y="500" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#7a6f5c">Authorized CertiTest Examiner</text>
+    <text x="140" y="500" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#7a6f5c">{{ __('ui.certificate.examiner') }}</text>
 
-    <text x="1060" y="500" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#3a3428">Document Date: {{ $date }}</text>
+    <text x="1060" y="500" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#3a3428">{{ __('ui.certificate.date') }} {{ $date }}</text>
 </svg>
