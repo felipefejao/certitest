@@ -65,7 +65,7 @@
                             <p class="text-sm text-[#706f6c] dark:text-[#A1A09A]">Compartilhe seu resultado</p>
                             <a
                                 href="{{ route('results.image', $attempt->public_token) }}"
-                                download="resultado-certitest.png"
+                                download="resultado-certitest.svg"
                                 class="inline-flex items-center gap-2 rounded-lg border border-[#e3e3e0] bg-white px-4 py-2 text-sm font-medium text-[#1b1b18] transition hover:border-[#f53003]/30 dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC]"
                             >
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

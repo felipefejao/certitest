@@ -56,7 +56,7 @@
                         </a>
                         <a
                             href="{{ route('results.image', $attempt->public_token) }}"
-                            download="resultado-certitest.png"
+                            download="resultado-certitest.svg"
                             class="inline-flex items-center justify-center rounded-lg border border-[#e3e3e0] bg-white/80 px-8 py-3 text-sm font-medium text-[#1b1b18] transition hover:border-[#f53003]/30 dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC]"
                         >
                             Baixar imagem
