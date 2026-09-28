@@ -13,7 +13,7 @@
 
         <nav class="px-6 py-4">
             <div class="mx-auto flex max-w-6xl items-center justify-between">
-                <span class="text-xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">CertiTest</span>
+                <img src="{{ asset('images/logo.png') }}" alt="CertiTest" class="h-10 w-auto">
                 <div class="flex items-center gap-4">
                     <button
                         type="button"

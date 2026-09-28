@@ -36,9 +36,7 @@
     <rect x="55" y="55" width="1090" height="520" fill="none" stroke="#9a8a70" stroke-width="2"/>
     <rect x="63" y="63" width="1074" height="504" fill="none" stroke="#9a8a70" stroke-width="1"/>
 
-    <polygon points="95,68 118,77 111.25,95 95,113 78.75,95 73,77" fill="#2e2e2e"/>
-    <polyline points="84.25,88.25 91,97.25 106.75,80.6" fill="none" stroke="#f6f1e7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="108" y="108" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="bold" fill="#2e2e2e">CertiTest</text>
+    <image href="{{ $logoDataUri }}" x="75" y="64" width="159" height="48" preserveAspectRatio="xMidYMid meet"/>
 
     <line x1="75" y1="125" x2="1125" y2="125" stroke="#c8bca6" stroke-width="1.5"/>
 
@@ -60,7 +58,7 @@
     <text x="600" y="472" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#3a3428">{{ __('ui.certificate.tagline') }}</text>
 
     <path d="M140 478 q6 -6 12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0" fill="none" stroke="#3a3428" stroke-width="1.5"/>
-    <text x="140" y="468" font-family="'Brush Script MT', 'Segoe Script', cursive" font-size="36" fill="#3a3428">CertiTest</text>
+    <image href="{{ $logoDataUri }}" x="140" y="424" width="179" height="54" preserveAspectRatio="xMinYMax meet"/>
     <text x="140" y="500" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#7a6f5c">{{ __('ui.certificate.examiner') }}</text>
 
     <text x="1060" y="500" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#3a3428">{{ __('ui.certificate.date') }} {{ $date }}</text>

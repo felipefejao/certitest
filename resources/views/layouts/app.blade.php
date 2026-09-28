@@ -14,6 +14,9 @@
             gtag('config', 'G-XCHXPC53GX');
         </script>
 
+        <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
+        <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+
         <title>@yield('title', config('app.name', 'Laravel'))</title>
 
         <meta name="description" content="@yield('description', 'Teste seus conhecimentos e prepare-se para certificações com o CertiTest.')">

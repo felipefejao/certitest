@@ -42,6 +42,7 @@ class SharedResultController extends Controller
         $scoreX = 600 - (($scoreWidth + $barGap + $barWidth) / 2);
 
         $svg = view('results.certificate', [
+            'logoDataUri' => 'data:image/png;base64,'.base64_encode(file_get_contents(public_path('images/logo.png'))),
             'candidateName' => mb_strtoupper($attempt->user->name),
             'titleLines' => $this->wrapText($attempt->exam->name, 38, 960),
             'score' => $score,

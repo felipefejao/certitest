@@ -8,7 +8,7 @@
 
         <nav class="border-b border-[#e3e3e0] bg-white/80 px-6 py-4 backdrop-blur dark:border-[#3E3E3A] dark:bg-[#161615]/80">
             <div class="mx-auto flex max-w-6xl items-center justify-between">
-                <a href="{{ route('home') }}" class="text-xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">CertiTest</a>
+                <a href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt="CertiTest" class="h-10 w-auto"></a>
                 <div class="flex items-center gap-4">
                     <span class="text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ $user->name }}</span>
                     <form method="POST" action="{{ route('logout') }}">
