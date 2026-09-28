@@ -29,10 +29,25 @@ class SharedResultController extends Controller
             ->where('public_token', $publicToken)
             ->firstOrFail();
 
+        $score = sprintf('%.0f%%', (float) $attempt->percentage);
+        $scoreFontSize = 115;
+        $scoreWidth = array_sum(array_map(fn (string $char): float => match (true) {
+            $char === '%' => 0.88,
+            $char === '.' => 0.28,
+            default => 0.56,
+        }, str_split($score))) * $scoreFontSize;
+
+        $barWidth = 140;
+        $barGap = 25;
+        $scoreX = 600 - (($scoreWidth + $barGap + $barWidth) / 2);
+
         $svg = view('results.certificate', [
             'candidateName' => mb_strtoupper($attempt->user->name),
             'titleLines' => $this->wrapText($attempt->exam->name, 38, 960),
-            'percentage' => (float) $attempt->percentage,
+            'score' => $score,
+            'scoreX' => $scoreX,
+            'barX' => $scoreX + $scoreWidth + $barGap,
+            'barWidth' => $barWidth,
             'correct' => $attempt->correct_answers,
             'total' => $attempt->total_questions,
             'date' => $attempt->finished_at?->format('d/m/Y') ?? now()->format('d/m/Y'),
