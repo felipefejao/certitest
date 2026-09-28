@@ -1,15 +1,19 @@
 @extends('layouts.app')
 
-@section('title', 'Resultado — '.$exam['name'])
+@section('title', __('ui.result.meta_title', ['exam' => $exam['name']]))
 
 @section('content')
     <main class="min-h-screen">
         <div class="absolute inset-0 -z-10 bg-gradient-to-br from-[#fff0ed] via-[#fffaf6] to-[#f0f9ff] dark:from-[#1a0a05] dark:via-[#0a0a0a] dark:to-[#0a0a0a]"></div>
 
+        <div class="flex justify-end px-6 pt-4">
+            <x-language-selector />
+        </div>
+
         <section class="px-6 py-20">
             <div class="mx-auto max-w-2xl">
                 <div class="glass-card p-8 text-center lg:p-12">
-                    <h1 class="mb-2 text-2xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">Simulado concluído!</h1>
+                    <h1 class="mb-2 text-2xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">{{ __('ui.result.completed') }}</h1>
                     <p class="mb-8 text-[#706f6c] dark:text-[#A1A09A]">{{ $exam['name'] }}</p>
 
                     <div class="mb-8 flex items-center justify-center">
@@ -27,15 +31,15 @@
                     <div class="grid gap-4 sm:grid-cols-3">
                         <div class="rounded-xl bg-white/50 p-4 dark:bg-[#161615]/50">
                             <p class="text-2xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">{{ $attempt->total_questions }}</p>
-                            <p class="text-xs text-[#706f6c] dark:text-[#A1A09A]">Total de questões</p>
+                            <p class="text-xs text-[#706f6c] dark:text-[#A1A09A]">{{ __('ui.result.total_questions') }}</p>
                         </div>
                         <div class="rounded-xl bg-green-50 p-4 dark:bg-green-900/20">
                             <p class="text-2xl font-bold text-green-700 dark:text-green-400">{{ $attempt->correct_answers }}</p>
-                            <p class="text-xs text-green-700 dark:text-green-400">Acertos</p>
+                            <p class="text-xs text-green-700 dark:text-green-400">{{ __('ui.result.correct') }}</p>
                         </div>
                         <div class="rounded-xl bg-red-50 p-4 dark:bg-red-900/20">
                             <p class="text-2xl font-bold text-red-700 dark:text-red-400">{{ $attempt->wrong_answers }}</p>
-                            <p class="text-xs text-red-700 dark:text-red-400">Erros</p>
+                            <p class="text-xs text-red-700 dark:text-red-400">{{ __('ui.result.wrong') }}</p>
                         </div>
                     </div>
 
@@ -44,25 +48,25 @@
                             href="{{ route('dashboard') }}"
                             class="inline-flex items-center justify-center rounded-lg bg-[#1b1b18] px-8 py-3 text-sm font-medium text-white transition hover:bg-black dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white"
                         >
-                            Voltar ao dashboard
+                            {{ __('ui.result.back_dashboard') }}
                         </a>
                         <a
                             href="{{ route('home') }}"
                             class="inline-flex items-center justify-center rounded-lg border border-[#e3e3e0] bg-white/80 px-8 py-3 text-sm font-medium text-[#1b1b18] transition hover:border-[#f53003]/30 dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC]"
                         >
-                            Fazer outro simulado
+                            {{ __('ui.result.take_another') }}
                         </a>
                     </div>
 
                     <div class="shareable-card mt-8 overflow-hidden rounded-2xl border border-[#e3e3e0] bg-white/80 shadow-sm dark:border-[#3E3E3A] dark:bg-[#161615]/80">
                         <img
                             src="{{ route('results.image', $attempt->public_token) }}"
-                            alt="Card de resultado do CertiTest"
+                            alt="{{ __('ui.result.image_alt') }}"
                             class="w-full"
                             loading="lazy"
                         >
                         <div class="flex items-center justify-between gap-4 border-t border-[#e3e3e0] p-4 dark:border-[#3E3E3A]">
-                            <p class="text-sm text-[#706f6c] dark:text-[#A1A09A]">Compartilhe seu resultado</p>
+                            <p class="text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ __('ui.result.share_prompt') }}</p>
                             <a
                                 href="{{ route('results.image', $attempt->public_token) }}"
                                 download="resultado-certitest.svg"
@@ -71,14 +75,14 @@
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                                 </svg>
-                                Baixar imagem
+                                {{ __('ui.result.download') }}
                             </a>
                         </div>
                     </div>
 
                     <x-share-result
-                        :title="'Meu resultado no CertiTest'"
-                        :description="'Acabei de fazer o simulado '.$exam['name'].' no CertiTest e consegui '.round($attempt->percentage, 0).'% de aproveitamento! 🚀'.'\n'.'Teste seus conhecimentos também.'"
+                        :title="__('ui.result.share_title')"
+                        :description="__('ui.result.share_text', ['exam' => $exam['name'], 'score' => round($attempt->percentage, 0)]).'\n'.__('ui.result.share_cta')"
                         :url="route('results.public', $attempt->public_token)"
                     />
                 </div>

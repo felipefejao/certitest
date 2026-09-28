@@ -37,7 +37,7 @@ class HomeController extends Controller
 
         $captcha = [fake()->numberBetween(1, 9), fake()->numberBetween(1, 9)];
         $request->session()->put('suggestion_captcha_answer', $captcha[0] + $captcha[1]);
-        $captchaQuestion = "Quanto é {$captcha[0]} + {$captcha[1]}?";
+        $captchaQuestion = __('ui.suggestion.captcha', ['a' => $captcha[0], 'b' => $captcha[1]]);
 
         return view('home', compact('exams', 'categories', 'stats', 'captchaQuestion'));
     }

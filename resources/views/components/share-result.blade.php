@@ -7,7 +7,7 @@
 @php
     $shareUrl = $url ?? url()->current();
     $shareTitle = $title ?? 'CertiTest';
-    $shareDescription = $description ?? 'Teste seus conhecimentos com o CertiTest.';
+    $shareDescription = $description ?? __('ui.share.default_description');
     $encodedUrl = urlencode($shareUrl);
     $encodedText = urlencode($shareDescription);
 @endphp
@@ -18,14 +18,14 @@
     data-share-title="{{ $shareTitle }}"
     data-share-text="{{ $shareDescription }}"
 >
-    <p class="mb-3 text-center text-sm font-medium text-[#1b1b18] dark:text-[#EDEDEC]">Compartilhar</p>
+    <p class="mb-3 text-center text-sm font-medium text-[#1b1b18] dark:text-[#EDEDEC]">{{ __('ui.share.title') }}</p>
 
     <div class="flex flex-wrap items-center justify-center gap-3">
         <a
             href="https://wa.me/?text={{ $encodedText }}%20{{ $encodedUrl }}"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Compartilhar no WhatsApp"
+            aria-label="{{ __('ui.share.aria', ['network' => 'WhatsApp']) }}"
             class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366] text-white transition hover:scale-105 hover:opacity-90"
         >
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -37,7 +37,7 @@
             href="https://twitter.com/intent/tweet?text={{ $encodedText }}&url={{ $encodedUrl }}"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Compartilhar no X"
+            aria-label="{{ __('ui.share.aria', ['network' => 'X']) }}"
             class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#1b1b18] text-white transition hover:scale-105 hover:opacity-90 dark:bg-[#EDEDEC] dark:text-[#1C1C1A]"
         >
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -49,7 +49,7 @@
             href="https://www.facebook.com/sharer/sharer.php?u={{ $encodedUrl }}"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Compartilhar no Facebook"
+            aria-label="{{ __('ui.share.aria', ['network' => 'Facebook']) }}"
             class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#1877F2] text-white transition hover:scale-105 hover:opacity-90"
         >
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -61,7 +61,7 @@
             href="https://www.linkedin.com/sharing/share-offsite/?url={{ $encodedUrl }}"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Compartilhar no LinkedIn"
+            aria-label="{{ __('ui.share.aria', ['network' => 'LinkedIn']) }}"
             class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#0A66C2] text-white transition hover:scale-105 hover:opacity-90"
         >
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -78,7 +78,7 @@
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
             </svg>
-            Copiar link
+            {{ __('ui.share.copy_link') }}
         </button>
 
         <button
@@ -89,7 +89,7 @@
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 4.909A8 8 0 0119.288 7.4M7.217 4.909a8.003 8.003 0 00-1.4 11.4m0-11.4v3.6m0 0h3.6M16.783 19.091A8 8 0 014.712 16.6m12.071 2.491a8.003 8.003 0 001.4-11.4m0 11.4v-3.6m0 3.6h-3.6" />
             </svg>
-            Compartilhar
+            {{ __('ui.share.title') }}
         </button>
     </div>
 </div>
@@ -107,7 +107,7 @@
                     copyBtn.addEventListener('click', function () {
                         navigator.clipboard.writeText(text + ' ' + url).then(function () {
                             const original = copyBtn.textContent.trim();
-                            copyBtn.textContent = 'Copiado!';
+                            copyBtn.textContent = @js(__('ui.share.copied'));
                             setTimeout(function () {
                                 copyBtn.textContent = original;
                             }, 1500);

@@ -32,7 +32,7 @@ class AuthController extends Controller
         }
 
         throw ValidationException::withMessages([
-            'email' => 'As credenciais informadas não correspondem aos nossos registros.',
+            'email' => __('auth.failed'),
         ]);
     }
 

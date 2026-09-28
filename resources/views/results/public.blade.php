@@ -1,17 +1,21 @@
 @extends('layouts.app')
 
-@section('title', $user->name.' conseguiu '.round($attempt->percentage, 0).'% no CertiTest')
-@section('description', 'Veja o resultado de '.$user->name.' no simulado '.$exam['name'].' e teste seus conhecimentos também.')
+@section('title', __('ui.public_result.meta_title', ['name' => $user->name, 'score' => round($attempt->percentage, 0)]))
+@section('description', __('ui.public_result.meta_description', ['name' => $user->name, 'exam' => $exam['name']]))
 @section('og_image', route('results.image', $attempt->public_token))
 
 @section('content')
     <main class="min-h-screen">
         <div class="absolute inset-0 -z-10 bg-gradient-to-br from-[#fff0ed] via-[#fffaf6] to-[#f0f9ff] dark:from-[#1a0a05] dark:via-[#0a0a0a] dark:to-[#0a0a0a]"></div>
 
+        <div class="flex justify-end px-6 pt-4">
+            <x-language-selector />
+        </div>
+
         <section class="px-6 py-20">
             <div class="mx-auto max-w-2xl">
                 <div class="glass-card p-8 text-center lg:p-12">
-                    <h1 class="mb-2 text-2xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">Resultado no CertiTest</h1>
+                    <h1 class="mb-2 text-2xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">{{ __('ui.public_result.heading') }}</h1>
                     <p class="mb-8 text-[#706f6c] dark:text-[#A1A09A]">{{ $exam['name'] }}</p>
 
                     <div class="mb-8 flex items-center justify-center">
@@ -27,23 +31,25 @@
                     </div>
 
                     <p class="mb-6 text-[#1b1b18] dark:text-[#EDEDEC]">
-                        <span class="font-semibold">{{ $user->name }}</span> acertou
-                        <span class="font-semibold text-[#f53003] dark:text-[#FF4433]">{{ $attempt->correct_answers }}</span>
-                        de {{ $attempt->total_questions }} questões.
+                        {!! __('ui.public_result.scored', [
+                            'name' => '<span class="font-semibold">'.e($user->name).'</span>',
+                            'correct' => '<span class="font-semibold text-[#f53003] dark:text-[#FF4433]">'.$attempt->correct_answers.'</span>',
+                            'total' => $attempt->total_questions,
+                        ]) !!}
                     </p>
 
                     <div class="grid gap-4 sm:grid-cols-3">
                         <div class="rounded-xl bg-white/50 p-4 dark:bg-[#161615]/50">
                             <p class="text-2xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">{{ $attempt->total_questions }}</p>
-                            <p class="text-xs text-[#706f6c] dark:text-[#A1A09A]">Total de questões</p>
+                            <p class="text-xs text-[#706f6c] dark:text-[#A1A09A]">{{ __('ui.result.total_questions') }}</p>
                         </div>
                         <div class="rounded-xl bg-green-50 p-4 dark:bg-green-900/20">
                             <p class="text-2xl font-bold text-green-700 dark:text-green-400">{{ $attempt->correct_answers }}</p>
-                            <p class="text-xs text-green-700 dark:text-green-400">Acertos</p>
+                            <p class="text-xs text-green-700 dark:text-green-400">{{ __('ui.result.correct') }}</p>
                         </div>
                         <div class="rounded-xl bg-red-50 p-4 dark:bg-red-900/20">
                             <p class="text-2xl font-bold text-red-700 dark:text-red-400">{{ $attempt->wrong_answers }}</p>
-                            <p class="text-xs text-red-700 dark:text-red-400">Erros</p>
+                            <p class="text-xs text-red-700 dark:text-red-400">{{ __('ui.result.wrong') }}</p>
                         </div>
                     </div>
 
@@ -52,14 +58,14 @@
                             href="{{ route('home') }}"
                             class="inline-flex items-center justify-center rounded-lg bg-[#1b1b18] px-8 py-3 text-sm font-medium text-white transition hover:bg-black dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white"
                         >
-                            Fazer um simulado
+                            {{ __('ui.public_result.cta') }}
                         </a>
                         <a
                             href="{{ route('results.image', $attempt->public_token) }}"
                             download="resultado-certitest.svg"
                             class="inline-flex items-center justify-center rounded-lg border border-[#e3e3e0] bg-white/80 px-8 py-3 text-sm font-medium text-[#1b1b18] transition hover:border-[#f53003]/30 dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC]"
                         >
-                            Baixar imagem
+                            {{ __('ui.public_result.download') }}
                         </a>
                     </div>
                 </div>
