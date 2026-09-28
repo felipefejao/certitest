@@ -18,10 +18,7 @@ class CandidateController extends Controller
             ->orderBy('name')
             ->get(['id', 'name', 'slug']);
 
-        $selectedCategory = $request->string('categoria')->toString();
-
         $availableExams = Exam::where('status', ExamStatus::Published)
-            ->when($selectedCategory !== '', fn ($query) => $query->whereHas('category', fn ($q) => $q->where('slug', $selectedCategory)))
             ->with('category:id,name,slug')
             ->get(['id', 'name', 'slug', 'description', 'questions', 'exam_category_id'])
             ->map(fn (Exam $exam) => [
@@ -30,6 +27,7 @@ class CandidateController extends Controller
                 'slug' => $exam->slug,
                 'description' => $exam->description,
                 'category' => $exam->category?->name,
+                'category_slug' => $exam->category?->slug,
                 'questions_count' => $exam->questions_count,
             ]);
 
@@ -47,6 +45,6 @@ class CandidateController extends Controller
             'last_score' => $finishedAttempts->isNotEmpty() ? (float) $finishedAttempts->first()->percentage : 0,
         ];
 
-        return view('dashboard', compact('user', 'availableExams', 'categories', 'selectedCategory', 'stats', 'finishedAttempts'));
+        return view('dashboard', compact('user', 'availableExams', 'categories', 'stats', 'finishedAttempts'));
     }
 }

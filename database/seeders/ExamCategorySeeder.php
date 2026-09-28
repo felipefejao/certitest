@@ -20,10 +20,12 @@ class ExamCategorySeeder extends Seeder
             ['name' => 'Frontend', 'slug' => 'frontend'],
             ['name' => 'Banco de Dados', 'slug' => 'banco-de-dados'],
             ['name' => 'DevOps', 'slug' => 'devops'],
+            ['name' => 'Cloud', 'slug' => 'cloud'],
+            ['name' => 'Mobile', 'slug' => 'mobile'],
         ];
 
         foreach ($categories as $category) {
-            ExamCategory::create($category);
+            ExamCategory::updateOrCreate(['slug' => $category['slug']], $category);
         }
     }
 }

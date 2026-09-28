@@ -15,10 +15,7 @@ class HomeController extends Controller
             ->orderBy('name')
             ->get(['id', 'name', 'slug']);
 
-        $selectedCategory = $request->string('categoria')->toString();
-
         $exams = Exam::published()
-            ->when($selectedCategory !== '', fn ($query) => $query->whereHas('category', fn ($q) => $q->where('slug', $selectedCategory)))
             ->with('category:id,name,slug')
             ->get(['id', 'name', 'slug', 'description', 'questions', 'exam_category_id']);
 
@@ -28,6 +25,7 @@ class HomeController extends Controller
             'slug' => $exam->slug,
             'description' => $exam->description,
             'category' => $exam->category?->name,
+            'category_slug' => $exam->category?->slug,
             'questions_count' => count($exam->questions ?? []),
         ]);
 
@@ -41,6 +39,6 @@ class HomeController extends Controller
         $request->session()->put('suggestion_captcha_answer', $captcha[0] + $captcha[1]);
         $captchaQuestion = "Quanto é {$captcha[0]} + {$captcha[1]}?";
 
-        return view('home', compact('exams', 'categories', 'selectedCategory', 'stats', 'captchaQuestion'));
+        return view('home', compact('exams', 'categories', 'stats', 'captchaQuestion'));
     }
 }

@@ -15,17 +15,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Candidate User',
-            'email' => 'candidate@example.com',
-            'role' => 'candidate',
-        ]);
+        User::firstOrCreate(
+            ['email' => 'candidate@example.com'],
+            [
+                'name' => 'Candidate User',
+                'password' => 'password',
+                'role' => 'candidate',
+            ]
+        );
 
-        User::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
-            'role' => 'admin',
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Admin User',
+                'password' => 'password',
+                'role' => 'admin',
+            ]
+        );
 
         $this->call([
             ExamCategorySeeder::class,

@@ -51,25 +51,22 @@
                             <h2 class="text-xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">Provas disponíveis</h2>
 
                             @if ($categories->isNotEmpty())
-                                <form method="GET" action="{{ route('dashboard') }}#exams">
-                                    <select
-                                        name="categoria"
-                                        onchange="this.form.submit()"
-                                        class="rounded-lg border border-[#e3e3e0] bg-white/80 px-4 py-2 text-sm font-medium text-[#1b1b18] outline-none transition focus:border-[#f53003] dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC] dark:focus:border-[#FF4433]"
-                                    >
-                                        <option value="">Todas as categorias</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->slug }}" @selected($selectedCategory === $category->slug)>{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </form>
+                                <select
+                                    id="exam-category-filter"
+                                    class="rounded-lg border border-[#e3e3e0] bg-white/80 px-4 py-2 text-sm font-medium text-[#1b1b18] outline-none transition focus:border-[#f53003] dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC] dark:focus:border-[#FF4433]"
+                                >
+                                    <option value="">Todas as categorias</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
                             @endif
                         </div>
 
                         @if ($availableExams->isNotEmpty())
-                            <div class="grid gap-4 sm:grid-cols-2">
+                            <div id="exams-grid" class="grid gap-4 sm:grid-cols-2">
                                 @foreach ($availableExams as $exam)
-                                    <article class="glass-card flex flex-col p-6">
+                                    <article data-category="{{ $exam['category_slug'] }}" class="glass-card flex flex-col p-6">
                                         <div class="mb-3 flex items-center justify-between">
                                             <h3 class="font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">{{ $exam['name'] }}</h3>
                                             <span class="rounded-full bg-[#f53003]/10 px-2.5 py-0.5 text-xs font-medium text-[#f53003] dark:bg-[#f53003]/15 dark:text-[#FF4433]">
@@ -171,5 +168,19 @@
                 </div>
             </div>
         </section>
+
+        <script>
+            const categoryFilter = document.getElementById('exam-category-filter');
+
+            if (categoryFilter) {
+                categoryFilter.addEventListener('change', function () {
+                    const selected = this.value;
+
+                    document.querySelectorAll('#exams-grid [data-category]').forEach(function (card) {
+                        card.classList.toggle('hidden', selected !== '' && card.dataset.category !== selected);
+                    });
+                });
+            }
+        </script>
     </main>
 @endsection

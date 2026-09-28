@@ -194,24 +194,23 @@
                 </div>
 
                 @if ($categories->isNotEmpty())
-                    <form method="GET" action="{{ route('home') }}#exams" class="mb-10 flex justify-center">
+                    <div class="mb-10 flex justify-center">
                         <select
-                            name="categoria"
-                            onchange="this.form.submit()"
+                            id="exam-category-filter"
                             class="rounded-lg border border-[#e3e3e0] bg-white/80 px-4 py-2.5 text-sm font-medium text-[#1b1b18] outline-none transition focus:border-[#f53003] dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC] dark:focus:border-[#FF4433]"
                         >
                             <option value="">Todas as categorias</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->slug }}" @selected($selectedCategory === $category->slug)>{{ $category->name }}</option>
+                                <option value="{{ $category->slug }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
-                    </form>
+                    </div>
                 @endif
 
                 @if ($exams->isNotEmpty())
-                    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <div id="exams-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         @foreach ($exams as $exam)
-                            <article class="glass-card flex flex-col p-6 transition hover:-translate-y-1">
+                            <article data-category="{{ $exam['category_slug'] }}" class="glass-card flex flex-col p-6 transition hover:-translate-y-1">
                                 <div class="mb-4 flex items-center justify-between">
                                     <h3 class="text-lg font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">{{ $exam['name'] }}</h3>
                                     <span class="rounded-full bg-[#f53003]/10 px-2.5 py-0.5 text-xs font-medium text-[#f53003] dark:bg-[#f53003]/15 dark:text-[#FF4433]">
@@ -387,6 +386,18 @@
         </div>
 
         <script>
+            const categoryFilter = document.getElementById('exam-category-filter');
+
+            if (categoryFilter) {
+                categoryFilter.addEventListener('change', function () {
+                    const selected = this.value;
+
+                    document.querySelectorAll('#exams-grid [data-category]').forEach(function (card) {
+                        card.classList.toggle('hidden', selected !== '' && card.dataset.category !== selected);
+                    });
+                });
+            }
+
             const suggestionModal = document.getElementById('suggestion-modal');
 
             function openSuggestionModal() {
