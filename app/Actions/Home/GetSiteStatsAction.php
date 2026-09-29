@@ -11,14 +11,27 @@ class GetSiteStatsAction
 {
     public function handle(): SiteStatsData
     {
-        return Cache::remember('home.stats', 600, function (): SiteStatsData {
-            $exams = Exam::published()->get('questions');
+        $stats = Cache::remember('home.stats', 600, $this->calculate(...));
 
-            return new SiteStatsData(
-                exams: $exams->count(),
-                questions: $exams->sum(fn (Exam $exam): int => count($exam->questions ?? [])),
-                attempts: Attempt::whereNotNull('finished_at')->distinct()->count('user_id'),
-            );
-        });
+        if (! is_array($stats) || ! isset($stats['exams'], $stats['questions'], $stats['attempts'])) {
+            Cache::forget('home.stats');
+            $stats = $this->calculate();
+        }
+
+        return new SiteStatsData($stats['exams'], $stats['questions'], $stats['attempts']);
+    }
+
+    /**
+     * @return array{exams: int, questions: int, attempts: int}
+     */
+    private function calculate(): array
+    {
+        $exams = Exam::published()->get('questions');
+
+        return [
+            'exams' => $exams->count(),
+            'questions' => $exams->sum(fn (Exam $exam): int => count($exam->questions ?? [])),
+            'attempts' => Attempt::whereNotNull('finished_at')->distinct()->count('user_id'),
+        ];
     }
 }
