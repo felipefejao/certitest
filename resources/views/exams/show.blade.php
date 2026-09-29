@@ -45,12 +45,15 @@
                     </div>
 
                     <div class="flex flex-col gap-4 sm:flex-row">
-                        <a
-                            href="{{ route('exams.start', $exam['slug']) }}"
-                            class="inline-flex items-center justify-center rounded-lg bg-[#1b1b18] px-8 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:bg-black dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white"
-                        >
-                            {{ __('ui.home.start_exam') }}
-                        </a>
+                        <form method="POST" action="{{ route('exams.start', $exam['slug']) }}">
+                            @csrf
+                            <button
+                                type="submit"
+                                class="inline-flex items-center justify-center rounded-lg bg-[#1b1b18] px-8 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:bg-black dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white"
+                            >
+                                {{ __('ui.home.start_exam') }}
+                            </button>
+                        </form>
                         <a
                             href="{{ route('dashboard') }}"
                             class="inline-flex items-center justify-center rounded-lg border border-[#e3e3e0] bg-white/80 px-8 py-3.5 text-sm font-semibold text-[#1b1b18] transition hover:border-[#f53003]/30 dark:border-[#3E3E3A] dark:bg-[#161615]/80 dark:text-[#EDEDEC]"

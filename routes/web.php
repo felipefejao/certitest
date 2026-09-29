@@ -31,7 +31,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [CandidateController::class, 'dashboard'])->name('dashboard');
     Route::get('/exams/{slug}', [ExamController::class, 'show'])->name('exams.show');
-    Route::get('/exams/{slug}/start', [AttemptController::class, 'start'])->name('exams.start');
+    Route::post('/exams/{exam:slug}/start', [AttemptController::class, 'start'])->name('exams.start');
     Route::get('/exams-export', [ExamController::class, 'export'])->name('exams.export');
 
     Route::get('/attempts/{attempt}/question/{index}', [AttemptController::class, 'question'])->name('attempts.question');

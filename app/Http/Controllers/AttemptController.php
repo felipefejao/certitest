@@ -2,31 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Attempts\FinishAttemptAction;
+use App\Actions\Attempts\ResolveResumeIndexAction;
+use App\Actions\Attempts\StartAttemptAction;
+use App\DTOs\QuestionViewData;
 use App\Enums\ExamStatus;
 use App\Models\Answer;
 use App\Models\Attempt;
 use App\Models\Exam;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class AttemptController extends Controller
 {
-    public function start(Request $request, string $slug): RedirectResponse
+    public function __construct(
+        private StartAttemptAction $startAttempt,
+        private ResolveResumeIndexAction $resolveResumeIndex,
+        private FinishAttemptAction $finishAttempt,
+    ) {}
+
+    public function start(Request $request, Exam $exam): RedirectResponse
     {
-        $exam = Exam::where('slug', $slug)
-            ->where('status', ExamStatus::Published)
-            ->firstOrFail();
+        abort_if($exam->status !== ExamStatus::Published, 404);
 
-        $attempt = Attempt::create([
-            'user_id' => $request->user()->id,
-            'exam_id' => $exam->id,
-            'total_questions' => $exam->questions_count,
-            'started_at' => now(),
+        $attempt = $this->startAttempt->handle($request->user(), $exam);
+
+        return redirect()->route('attempts.question', [
+            'attempt' => $attempt,
+            'index' => $this->resolveResumeIndex->handle($attempt),
         ]);
-
-        return redirect()->route('attempts.question', ['attempt' => $attempt, 'index' => 0]);
     }
 
     public function question(Request $request, Attempt $attempt, int $index): View|RedirectResponse
@@ -34,13 +41,13 @@ class AttemptController extends Controller
         $this->authorizeAccess($attempt);
 
         $exam = $attempt->exam;
-        $questions = $exam->questions ?? [];
+        $questions = $attempt->questions();
 
-        if ($index < 0 || $index >= count($questions)) {
+        if ($index < 0 || $index >= $questions->count()) {
             return redirect()->route('attempts.question', ['attempt' => $attempt, 'index' => 0]);
         }
 
-        $question = $questions[$index];
+        $question = $questions->get($index);
         $currentAnswer = $attempt->answers
             ->where('question_id', $question['id'])
             ->first();
@@ -53,12 +60,8 @@ class AttemptController extends Controller
                 'slug' => $exam->slug,
             ],
             'index' => $index,
-            'total' => count($questions),
-            'question' => [
-                'id' => $question['id'],
-                'question' => $question['question'],
-                'options' => $question['options'],
-            ],
+            'total' => $questions->count(),
+            'question' => QuestionViewData::fromArray($question),
             'selectedAnswer' => $currentAnswer?->selected_answer,
             'progress' => $this->getProgress($attempt, $questions),
         ]);
@@ -118,7 +121,7 @@ class AttemptController extends Controller
             );
         }
 
-        $attempt->finish();
+        $this->finishAttempt->handle($attempt);
 
         return redirect()->route('attempts.result', $attempt);
     }
@@ -135,7 +138,7 @@ class AttemptController extends Controller
 
         $answersByQuestion = $attempt->answers->keyBy('question_id');
 
-        $wrongQuestions = collect($attempt->exam->questions ?? [])
+        $wrongQuestions = $attempt->questions()
             ->map(function (array $question, int $index) use ($answersByQuestion) {
                 $answer = $answersByQuestion->get($question['id']);
 
@@ -168,7 +171,11 @@ class AttemptController extends Controller
         }
     }
 
-    private function getProgress(Attempt $attempt, array $questions): array
+    /**
+     * @param  Collection<int, array<string, mixed>>  $questions
+     * @return array<int, array{index: int, answered: bool}>
+     */
+    private function getProgress(Attempt $attempt, Collection $questions): array
     {
         $answeredIds = $attempt->answers
             ->whereNotNull('selected_answer')
@@ -176,7 +183,7 @@ class AttemptController extends Controller
             ->flip()
             ->toArray();
 
-        return collect($questions)->map(fn ($question, $idx) => [
+        return $questions->map(fn ($question, $idx) => [
             'index' => $idx,
             'answered' => isset($answeredIds[$question['id']]),
         ])->toArray();
