@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('/locale/{locale}', [LocaleController::class, 'update'])->name('locale.update');
+Route::view('/privacidade', 'privacy')->name('privacy');
 Route::post('/sugestoes', [ThemeSuggestionController::class, 'store'])
     ->middleware('throttle:5,1')
     ->name('suggestions.store');

@@ -77,6 +77,7 @@ return [
         'modal_email_placeholder' => 'you@example.com',
         'modal_cancel' => 'Cancel',
         'modal_submit' => 'Send suggestion',
+        'modal_privacy_notice' => 'We will only use your email to reply about your suggestion. Learn more in the :link.',
     ],
 
     'suggestion' => [
@@ -213,5 +214,32 @@ return [
         'answered_line' => 'You answered :answered of :total questions.',
         'unanswered_note' => 'Unanswered questions count as incorrect.',
         'back' => 'Back',
+    ],
+
+    'consent' => [
+        'title' => 'Cookie preferences',
+        'message' => 'We use cookies for traffic analytics (Google Analytics) and to display ads (Google AdSense). You can accept or reject.',
+        'policy_link' => 'Privacy Policy',
+        'accept' => 'Accept',
+        'reject' => 'Reject',
+        'preferences' => 'Cookie preferences',
+    ],
+
+    'privacy' => [
+        'meta_title' => 'Privacy Policy — CertiTest',
+        'meta_description' => 'Learn how CertiTest collects and uses data: traffic analytics, ads and exam topic suggestions.',
+        'title' => 'Privacy Policy',
+        'updated' => 'Last updated: [date to be defined]',
+        'data_title' => 'Data we collect',
+        'data_text' => 'When you create an account, we store your name, email and password (hashed). We also record your exam attempts and answers to show your performance.',
+        'analytics_title' => 'Traffic analytics (Google Analytics)',
+        'analytics_text' => 'With your consent, we use Google Analytics to understand how the site is used, such as visited pages and usage time. Without consent, no data is sent to Google.',
+        'ads_title' => 'Advertising (Google AdSense)',
+        'ads_text' => 'With your consent, we display Google AdSense ads, which may use cookies for personalization. Without consent, no ad scripts are loaded.',
+        'suggestions_title' => 'Topic suggestions',
+        'suggestions_text' => 'When you suggest an exam topic, we collect the provided email only to contact you about the suggestion. It is not used for marketing or shared with third parties.',
+        'rights_title' => 'Your rights and preferences',
+        'rights_text' => 'You can review or change your cookie consent at any time using the button below.',
+        'legal_placeholder' => '[Final legal text to be reviewed by a compliance professional: legal basis, retention periods, data protection officer (DPO) and contact channel.]',
     ],
 ];

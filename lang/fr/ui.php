@@ -77,6 +77,7 @@ return [
         'modal_email_placeholder' => 'vous@exemple.com',
         'modal_cancel' => 'Annuler',
         'modal_submit' => 'Envoyer la suggestion',
+        'modal_privacy_notice' => 'Nous n\'utiliserons votre e-mail que pour répondre à votre suggestion. En savoir plus dans la :link.',
     ],
 
     'suggestion' => [
@@ -213,5 +214,32 @@ return [
         'answered_line' => 'Vous avez répondu à :answered questions sur :total.',
         'unanswered_note' => 'Les questions sans réponse seront considérées comme incorrectes.',
         'back' => 'Retour',
+    ],
+
+    'consent' => [
+        'title' => 'Préférences de cookies',
+        'message' => 'Nous utilisons des cookies pour l\'analyse du trafic (Google Analytics) et l\'affichage de publicités (Google AdSense). Vous pouvez accepter ou refuser.',
+        'policy_link' => 'Politique de confidentialité',
+        'accept' => 'Accepter',
+        'reject' => 'Refuser',
+        'preferences' => 'Préférences de cookies',
+    ],
+
+    'privacy' => [
+        'meta_title' => 'Politique de confidentialité — CertiTest',
+        'meta_description' => 'Découvrez comment CertiTest collecte et utilise les données : analyse du trafic, publicités et suggestions de sujets.',
+        'title' => 'Politique de confidentialité',
+        'updated' => 'Dernière mise à jour : [date à définir]',
+        'data_title' => 'Données que nous collectons',
+        'data_text' => 'Lors de la création d\'un compte, nous stockons votre nom, votre e-mail et votre mot de passe (haché). Nous enregistrons également vos tentatives et réponses aux examens pour afficher vos performances.',
+        'analytics_title' => 'Analyse du trafic (Google Analytics)',
+        'analytics_text' => 'Avec votre consentement, nous utilisons Google Analytics pour comprendre comment le site est utilisé, comme les pages visitées et le temps d\'utilisation. Sans consentement, aucune donnée n\'est envoyée à Google.',
+        'ads_title' => 'Publicité (Google AdSense)',
+        'ads_text' => 'Avec votre consentement, nous affichons des publicités Google AdSense, qui peuvent utiliser des cookies à des fins de personnalisation. Sans consentement, aucun script publicitaire n\'est chargé.',
+        'suggestions_title' => 'Suggestions de sujets',
+        'suggestions_text' => 'Lorsque vous suggérez un sujet d\'examen, nous collectons l\'e-mail fourni uniquement pour vous contacter au sujet de la suggestion. Il n\'est pas utilisé à des fins marketing ni partagé avec des tiers.',
+        'rights_title' => 'Vos droits et préférences',
+        'rights_text' => 'Vous pouvez revoir ou modifier votre consentement aux cookies à tout moment à l\'aide du bouton ci-dessous.',
+        'legal_placeholder' => '[Texte juridique final à faire réviser par un professionnel de la conformité : base légale, durées de conservation, délégué à la protection des données (DPO) et canal de contact.]',
     ],
 ];
