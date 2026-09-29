@@ -16,6 +16,7 @@
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:image" content="@yield('og_image', asset('images/og-default.png'))">
+        <meta property="og:image:type" content="@yield('og_image_type', 'image/png')">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
 

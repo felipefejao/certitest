@@ -20,6 +20,7 @@ Route::post('/sugestoes', [ThemeSuggestionController::class, 'store'])
 
 Route::get('/result/{public_token}', [SharedResultController::class, 'show'])->name('results.public');
 Route::get('/result/{public_token}/image', [SharedResultController::class, 'image'])->name('results.image');
+Route::get('/result/{public_token}/image.png', [SharedResultController::class, 'imagePng'])->name('results.image.png');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
