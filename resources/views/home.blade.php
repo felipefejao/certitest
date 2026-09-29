@@ -3,10 +3,6 @@
 @section('title', __('ui.home.meta_title'))
 @section('description', __('ui.home.meta_description'))
 
-@push('head')
-    <x-adsense-auto-ads />
-@endpush
-
 @section('content')
     <main class="relative overflow-hidden">
         <div class="absolute inset-0 -z-10 bg-gradient-to-br from-[#fff0ed] via-[#fffaf6] to-[#f0f9ff] dark:from-[#1a0a05] dark:via-[#0a0a0a] dark:to-[#0a0a0a]"></div>
@@ -261,15 +257,15 @@
             <div class="mx-auto max-w-6xl">
                 <div class="grid gap-8 text-center sm:grid-cols-3">
                     <div class="glass-card p-8">
-                        <p class="text-4xl font-bold text-[#f53003] dark:text-[#FF4433]">+{{ \Illuminate\Support\Number::format($stats['questions'], locale: app()->getLocale()) }}</p>
+                        <p class="text-4xl font-bold text-[#f53003] dark:text-[#FF4433]">+{{ \Illuminate\Support\Number::format($stats->questions, locale: app()->getLocale()) }}</p>
                         <p class="mt-2 text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ __('ui.home.stats_questions') }}</p>
                     </div>
                     <div class="glass-card p-8">
-                        <p class="text-4xl font-bold text-[#f53003] dark:text-[#FF4433]">+{{ \Illuminate\Support\Number::format($stats['exams'], locale: app()->getLocale()) }}</p>
+                        <p class="text-4xl font-bold text-[#f53003] dark:text-[#FF4433]">+{{ \Illuminate\Support\Number::format($stats->exams, locale: app()->getLocale()) }}</p>
                         <p class="mt-2 text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ __('ui.home.stats_exams') }}</p>
                     </div>
                     <div class="glass-card p-8">
-                        <p class="text-4xl font-bold text-[#f53003] dark:text-[#FF4433]">+{{ \Illuminate\Support\Number::format($stats['attempts'], locale: app()->getLocale()) }}</p>
+                        <p class="text-4xl font-bold text-[#f53003] dark:text-[#FF4433]">+{{ \Illuminate\Support\Number::format($stats->attempts, locale: app()->getLocale()) }}</p>
                         <p class="mt-2 text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ __('ui.home.stats_candidates') }}</p>
                     </div>
                 </div>
@@ -296,7 +292,8 @@
                 <p>&copy; {{ date('Y') }} CertiTest. {{ __('ui.home.footer_rights') }}</p>
                 <div class="flex gap-6">
                     <a href="#" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.home.footer_terms') }}</a>
-                    <a href="#" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.home.footer_privacy') }}</a>
+                    <a href="{{ route('privacy') }}" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.home.footer_privacy') }}</a>
+                    <button type="button" data-consent-reset class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.consent.preferences') }}</button>
                     <a href="https://dev7.com.br" target="_blank" rel="noopener noreferrer" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.home.footer_dev7') }}</a>
                 </div>
             </div>
@@ -377,6 +374,10 @@
                     @error('website')
                         <p class="text-xs text-red-600 dark:text-red-400">{{ $message }}</p>
                     @enderror
+
+                    <p class="text-xs text-[#706f6c] dark:text-[#A1A09A]">
+                        {!! __('ui.home.modal_privacy_notice', ['link' => '<a href="'.route('privacy').'" class="font-medium underline underline-offset-2 transition hover:text-[#f53003] dark:hover:text-[#FF4433]">'.__('ui.home.footer_privacy').'</a>']) !!}
+                    </p>
 
                     <div class="flex justify-end gap-3 pt-2">
                         <button type="button" onclick="closeSuggestionModal()" class="rounded-lg px-4 py-2.5 text-sm font-medium text-[#706f6c] transition hover:text-[#1b1b18] dark:text-[#A1A09A] dark:hover:text-[#EDEDEC]">

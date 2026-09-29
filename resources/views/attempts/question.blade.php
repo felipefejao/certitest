@@ -53,13 +53,13 @@
                 </details>
 
                 <div class="glass-card p-6 lg:p-10">
-                    <h1 class="mb-8 text-xl font-semibold leading-relaxed text-[#1b1b18] dark:text-[#EDEDEC]">{{ $question['question'] }}</h1>
+                    <h1 class="mb-8 text-xl font-semibold leading-relaxed text-[#1b1b18] dark:text-[#EDEDEC]">{{ $question->question }}</h1>
 
                     <form id="attemptForm" method="POST" action="{{ route('attempts.question', ['attempt' => $attempt, 'index' => $index]) }}" class="space-y-4">
                         @csrf
-                        <input type="hidden" name="question_id" value="{{ $question['id'] }}">
+                        <input type="hidden" name="question_id" value="{{ $question->id }}">
 
-                        @foreach ($question['options'] as $key => $option)
+                        @foreach ($question->options as $key => $option)
                             <label class="flex cursor-pointer items-center gap-4 rounded-xl border border-[#e3e3e0] bg-white/50 p-4 transition hover:border-[#f53003]/30 dark:border-[#3E3E3A] dark:bg-[#161615]/50 {{ $selectedAnswer === $key ? 'border-[#f53003] bg-[#f53003]/5 dark:border-[#FF4433] dark:bg-[#FF4433]/10' : '' }}">
                                 <input
                                     type="radio"

@@ -1,1 +1,1 @@
-//
+import './consent.js';

@@ -77,6 +77,7 @@ return [
         'modal_email_placeholder' => 'du@beispiel.de',
         'modal_cancel' => 'Abbrechen',
         'modal_submit' => 'Vorschlag senden',
+        'modal_privacy_notice' => 'Wir verwenden deine E-Mail-Adresse nur, um auf deinen Vorschlag zu antworten. Mehr dazu in der :link.',
     ],
 
     'suggestion' => [
@@ -174,6 +175,7 @@ return [
         'submit' => 'Anmelden',
         'no_account' => 'Noch kein Konto?',
         'register_link' => 'Registrieren',
+        'forgot' => 'Passwort vergessen',
     ],
 
     'register' => [
@@ -187,6 +189,34 @@ return [
         'submit' => 'Konto erstellen',
         'has_account' => 'Bereits ein Konto?',
         'login_link' => 'Anmelden',
+    ],
+
+    'forgot_password' => [
+        'meta_title' => 'Passwort zurücksetzen — CertiTest',
+        'heading' => 'Passwort vergessen?',
+        'subtitle' => 'Gib deine E-Mail-Adresse ein und wir senden dir einen Link zum Zurücksetzen deines Passworts.',
+        'email' => 'E-Mail',
+        'email_placeholder' => 'du@beispiel.de',
+        'submit' => 'Link zum Zurücksetzen senden',
+        'back_to_login' => 'Zurück zum Login',
+    ],
+
+    'reset_password' => [
+        'meta_title' => 'Passwort zurücksetzen — CertiTest',
+        'heading' => 'Passwort zurücksetzen',
+        'subtitle' => 'Wähle ein neues Passwort für dein Konto.',
+        'email' => 'E-Mail',
+        'email_placeholder' => 'du@beispiel.de',
+        'password' => 'Neues Passwort',
+        'password_placeholder' => 'Mindestens 8 Zeichen',
+        'password_confirm' => 'Neues Passwort bestätigen',
+        'submit' => 'Passwort zurücksetzen',
+    ],
+
+    'passwords' => [
+        'sent' => 'Falls diese E-Mail-Adresse registriert ist, erhältst du in Kürze einen Link zum Zurücksetzen des Passworts.',
+        'invalid_token' => 'Dieser Link zum Zurücksetzen ist ungültig oder abgelaufen. Bitte fordere einen neuen an.',
+        'reset_done' => 'Passwort erfolgreich zurückgesetzt. Melde dich mit deinem neuen Passwort an.',
     ],
 
     'exam' => [
@@ -213,5 +243,32 @@ return [
         'answered_line' => 'Du hast :answered von :total Fragen beantwortet.',
         'unanswered_note' => 'Unbeantwortete Fragen gelten als falsch.',
         'back' => 'Zurück',
+    ],
+
+    'consent' => [
+        'title' => 'Cookie-Einstellungen',
+        'message' => 'Wir verwenden Cookies für die Reichweitenanalyse (Google Analytics) und zur Einblendung von Werbung (Google AdSense). Du kannst zustimmen oder ablehnen.',
+        'policy_link' => 'Datenschutzerklärung',
+        'accept' => 'Akzeptieren',
+        'reject' => 'Ablehnen',
+        'preferences' => 'Cookie-Einstellungen',
+    ],
+
+    'privacy' => [
+        'meta_title' => 'Datenschutzerklärung — CertiTest',
+        'meta_description' => 'Erfahre, wie CertiTest Daten erhebt und nutzt: Reichweitenanalyse, Werbung und Themenvorschläge.',
+        'title' => 'Datenschutzerklärung',
+        'updated' => 'Zuletzt aktualisiert: [Datum noch festzulegen]',
+        'data_title' => 'Daten, die wir erheben',
+        'data_text' => 'Bei der Kontoerstellung speichern wir deinen Namen, deine E-Mail-Adresse und dein Passwort (gehasht). Außerdem speichern wir deine Prüfungsversuche und Antworten, um deine Leistung anzuzeigen.',
+        'analytics_title' => 'Reichweitenanalyse (Google Analytics)',
+        'analytics_text' => 'Mit deiner Einwilligung nutzen wir Google Analytics, um zu verstehen, wie die Website genutzt wird, etwa besuchte Seiten und Nutzungsdauer. Ohne Einwilligung werden keine Daten an Google gesendet.',
+        'ads_title' => 'Werbung (Google AdSense)',
+        'ads_text' => 'Mit deiner Einwilligung zeigen wir Anzeigen von Google AdSense, die Cookies zur Personalisierung verwenden können. Ohne Einwilligung werden keine Werbeskripte geladen.',
+        'suggestions_title' => 'Themenvorschläge',
+        'suggestions_text' => 'Wenn du ein Prüfungsthema vorschlägst, erheben wir die angegebene E-Mail-Adresse nur, um dich zu deinem Vorschlag zu kontaktieren. Sie wird nicht für Marketing genutzt oder an Dritte weitergegeben.',
+        'rights_title' => 'Deine Rechte und Einstellungen',
+        'rights_text' => 'Du kannst deine Cookie-Einwilligung jederzeit über die Schaltfläche unten überprüfen oder ändern.',
+        'legal_placeholder' => '[Endgültiger Rechtstext, noch von einer Compliance-Fachkraft zu prüfen: Rechtsgrundlage, Aufbewahrungsfristen, Datenschutzbeauftragte:r (DPO) und Kontaktkanal.]',
     ],
 ];

@@ -77,6 +77,7 @@ return [
         'modal_email_placeholder' => 'voce@exemplo.com',
         'modal_cancel' => 'Cancelar',
         'modal_submit' => 'Enviar sugestão',
+        'modal_privacy_notice' => 'Usaremos seu e-mail apenas para responder sobre sua sugestão. Saiba mais na :link.',
     ],
 
     'suggestion' => [
@@ -174,6 +175,7 @@ return [
         'submit' => 'Entrar',
         'no_account' => 'Ainda não tem conta?',
         'register_link' => 'Cadastre-se',
+        'forgot' => 'Esqueci minha senha',
     ],
 
     'register' => [
@@ -187,6 +189,34 @@ return [
         'submit' => 'Criar conta',
         'has_account' => 'Já tem conta?',
         'login_link' => 'Entrar',
+    ],
+
+    'forgot_password' => [
+        'meta_title' => 'Recuperar senha — CertiTest',
+        'heading' => 'Esqueceu sua senha?',
+        'subtitle' => 'Informe seu e-mail e enviaremos um link para redefinir sua senha.',
+        'email' => 'E-mail',
+        'email_placeholder' => 'seu@email.com',
+        'submit' => 'Enviar link de redefinição',
+        'back_to_login' => 'Voltar para o login',
+    ],
+
+    'reset_password' => [
+        'meta_title' => 'Redefinir senha — CertiTest',
+        'heading' => 'Redefinir senha',
+        'subtitle' => 'Escolha uma nova senha para sua conta.',
+        'email' => 'E-mail',
+        'email_placeholder' => 'seu@email.com',
+        'password' => 'Nova senha',
+        'password_placeholder' => 'Mínimo 8 caracteres',
+        'password_confirm' => 'Confirmar nova senha',
+        'submit' => 'Redefinir senha',
+    ],
+
+    'passwords' => [
+        'sent' => 'Se este e-mail estiver cadastrado, você receberá um link para redefinir a senha em instantes.',
+        'invalid_token' => 'Este link de redefinição é inválido ou expirou. Solicite um novo.',
+        'reset_done' => 'Senha redefinida com sucesso. Entre com sua nova senha.',
     ],
 
     'exam' => [
@@ -213,5 +243,32 @@ return [
         'answered_line' => 'Você respondeu :answered de :total questões.',
         'unanswered_note' => 'Questões não respondidas serão consideradas incorretas.',
         'back' => 'Voltar',
+    ],
+
+    'consent' => [
+        'title' => 'Preferências de cookies',
+        'message' => 'Usamos cookies para análise de tráfego (Google Analytics) e exibição de anúncios (Google AdSense). Você pode aceitar ou recusar.',
+        'policy_link' => 'Política de Privacidade',
+        'accept' => 'Aceitar',
+        'reject' => 'Recusar',
+        'preferences' => 'Preferências de cookies',
+    ],
+
+    'privacy' => [
+        'meta_title' => 'Política de Privacidade — CertiTest',
+        'meta_description' => 'Saiba como o CertiTest coleta e usa dados: análise de tráfego, anúncios e sugestões de temas.',
+        'title' => 'Política de Privacidade',
+        'updated' => 'Última atualização: [data a definir]',
+        'data_title' => 'Dados que coletamos',
+        'data_text' => 'Ao criar uma conta, armazenamos seu nome, e-mail e senha (com hash). Também registramos suas tentativas e respostas nos simulados para exibir seu desempenho.',
+        'analytics_title' => 'Análise de tráfego (Google Analytics)',
+        'analytics_text' => 'Com o seu consentimento, usamos o Google Analytics para entender como o site é utilizado, como páginas visitadas e tempo de uso. Sem o consentimento, nenhum dado é enviado ao Google.',
+        'ads_title' => 'Publicidade (Google AdSense)',
+        'ads_text' => 'Com o seu consentimento, exibimos anúncios do Google AdSense, que podem usar cookies para personalização. Sem o consentimento, nenhum script de anúncio é carregado.',
+        'suggestions_title' => 'Sugestões de temas',
+        'suggestions_text' => 'Ao sugerir um tema de prova, coletamos o e-mail informado apenas para contato sobre a sugestão. Ele não é usado para marketing nem compartilhado com terceiros.',
+        'rights_title' => 'Seus direitos e preferências',
+        'rights_text' => 'Você pode revisar ou alterar seu consentimento de cookies a qualquer momento usando o botão abaixo.',
+        'legal_placeholder' => '[Texto jurídico final a revisar por um profissional de compliance: base legal, prazos de retenção, encarregado de dados (DPO) e canal de contato.]',
     ],
 ];

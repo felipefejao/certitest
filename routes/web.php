@@ -6,24 +6,32 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\SharedResultController;
 use App\Http\Controllers\ThemeSuggestionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('/locale/{locale}', [LocaleController::class, 'update'])->name('locale.update');
+Route::view('/privacidade', 'privacy')->name('privacy');
 Route::post('/sugestoes', [ThemeSuggestionController::class, 'store'])
     ->middleware('throttle:5,1')
     ->name('suggestions.store');
 
 Route::get('/result/{public_token}', [SharedResultController::class, 'show'])->name('results.public');
 Route::get('/result/{public_token}/image', [SharedResultController::class, 'image'])->name('results.image');
+Route::get('/result/{public_token}/image.png', [SharedResultController::class, 'imagePng'])->name('results.image.png');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:register');
+
+    Route::get('/forgot-password', [PasswordResetController::class, 'showForgotPassword'])->name('password.request');
+    Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
+    Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetPassword'])->name('password.reset');
+    Route::post('/reset-password', [PasswordResetController::class, 'reset'])->name('password.update');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -31,7 +39,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [CandidateController::class, 'dashboard'])->name('dashboard');
     Route::get('/exams/{slug}', [ExamController::class, 'show'])->name('exams.show');
-    Route::get('/exams/{slug}/start', [AttemptController::class, 'start'])->name('exams.start');
+    Route::post('/exams/{exam:slug}/start', [AttemptController::class, 'start'])->name('exams.start');
     Route::get('/exams-export', [ExamController::class, 'export'])->name('exams.export');
 
     Route::get('/attempts/{attempt}/question/{index}', [AttemptController::class, 'question'])->name('attempts.question');

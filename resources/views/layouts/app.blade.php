@@ -4,16 +4,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XCHXPC53GX"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-XCHXPC53GX');
-        </script>
-
         <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
         <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
@@ -26,6 +16,7 @@
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:image" content="@yield('og_image', asset('images/og-default.png'))">
+        <meta property="og:image:type" content="@yield('og_image_type', 'image/png')">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
 
@@ -44,5 +35,7 @@
     </head>
     <body class="min-h-screen bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] dark:text-[#EDEDEC] antialiased">
         @yield('content')
+
+        <x-cookie-consent ga-id="G-XCHXPC53GX" :adsense-client="config('services.adsense.client')" />
     </body>
 </html>

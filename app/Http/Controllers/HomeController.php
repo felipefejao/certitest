@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Home\GetSiteStatsAction;
 use App\Models\Exam;
 use App\Models\ExamCategory;
 use Illuminate\Http\Request;
@@ -9,7 +10,7 @@ use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function __invoke(Request $request): View
+    public function __invoke(Request $request, GetSiteStatsAction $getSiteStats): View
     {
         $categories = ExamCategory::whereHas('exams', fn ($query) => $query->published())
             ->orderBy('name')
@@ -29,11 +30,7 @@ class HomeController extends Controller
             'questions_count' => count($exam->questions ?? []),
         ]);
 
-        $stats = [
-            'exams' => Exam::published()->count(),
-            'questions' => $exams->sum('questions_count'),
-            'attempts' => 0,
-        ];
+        $stats = $getSiteStats->handle();
 
         $captcha = [fake()->numberBetween(1, 9), fake()->numberBetween(1, 9)];
         $request->session()->put('suggestion_captcha_answer', $captcha[0] + $captcha[1]);
