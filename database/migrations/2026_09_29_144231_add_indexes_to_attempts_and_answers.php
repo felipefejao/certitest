@@ -43,11 +43,15 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('attempts', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
             $table->dropIndex(['user_id', 'exam_id']);
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
 
         Schema::table('answers', function (Blueprint $table) {
+            $table->dropForeign(['attempt_id']);
             $table->dropUnique(['attempt_id', 'question_id']);
+            $table->foreign('attempt_id')->references('id')->on('attempts')->cascadeOnDelete();
         });
     }
 };

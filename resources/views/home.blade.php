@@ -257,15 +257,15 @@
             <div class="mx-auto max-w-6xl">
                 <div class="grid gap-8 text-center sm:grid-cols-3">
                     <div class="glass-card p-8">
-                        <p class="text-4xl font-bold text-[#f53003] dark:text-[#FF4433]">+{{ \Illuminate\Support\Number::format($stats['questions'], locale: app()->getLocale()) }}</p>
+                        <p class="text-4xl font-bold text-[#f53003] dark:text-[#FF4433]">+{{ \Illuminate\Support\Number::format($stats->questions, locale: app()->getLocale()) }}</p>
                         <p class="mt-2 text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ __('ui.home.stats_questions') }}</p>
                     </div>
                     <div class="glass-card p-8">
-                        <p class="text-4xl font-bold text-[#f53003] dark:text-[#FF4433]">+{{ \Illuminate\Support\Number::format($stats['exams'], locale: app()->getLocale()) }}</p>
+                        <p class="text-4xl font-bold text-[#f53003] dark:text-[#FF4433]">+{{ \Illuminate\Support\Number::format($stats->exams, locale: app()->getLocale()) }}</p>
                         <p class="mt-2 text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ __('ui.home.stats_exams') }}</p>
                     </div>
                     <div class="glass-card p-8">
-                        <p class="text-4xl font-bold text-[#f53003] dark:text-[#FF4433]">+{{ \Illuminate\Support\Number::format($stats['attempts'], locale: app()->getLocale()) }}</p>
+                        <p class="text-4xl font-bold text-[#f53003] dark:text-[#FF4433]">+{{ \Illuminate\Support\Number::format($stats->attempts, locale: app()->getLocale()) }}</p>
                         <p class="mt-2 text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ __('ui.home.stats_candidates') }}</p>
                     </div>
                 </div>
