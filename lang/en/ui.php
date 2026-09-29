@@ -175,6 +175,7 @@ return [
         'submit' => 'Log in',
         'no_account' => "Don't have an account yet?",
         'register_link' => 'Sign up',
+        'forgot' => 'Forgot password',
     ],
 
     'register' => [
@@ -188,6 +189,34 @@ return [
         'submit' => 'Create account',
         'has_account' => 'Already have an account?',
         'login_link' => 'Log in',
+    ],
+
+    'forgot_password' => [
+        'meta_title' => 'Reset password — CertiTest',
+        'heading' => 'Forgot your password?',
+        'subtitle' => 'Enter your email and we will send you a link to reset your password.',
+        'email' => 'Email',
+        'email_placeholder' => 'you@email.com',
+        'submit' => 'Send reset link',
+        'back_to_login' => 'Back to login',
+    ],
+
+    'reset_password' => [
+        'meta_title' => 'Reset password — CertiTest',
+        'heading' => 'Reset password',
+        'subtitle' => 'Choose a new password for your account.',
+        'email' => 'Email',
+        'email_placeholder' => 'you@email.com',
+        'password' => 'New password',
+        'password_placeholder' => 'Minimum 8 characters',
+        'password_confirm' => 'Confirm new password',
+        'submit' => 'Reset password',
+    ],
+
+    'passwords' => [
+        'sent' => 'If this email is registered, you will receive a password reset link shortly.',
+        'invalid_token' => 'This reset link is invalid or has expired. Please request a new one.',
+        'reset_done' => 'Password updated successfully. Log in with your new password.',
     ],
 
     'exam' => [

@@ -175,6 +175,7 @@ return [
         'submit' => 'Se connecter',
         'no_account' => 'Pas encore de compte ?',
         'register_link' => 'Inscrivez-vous',
+        'forgot' => 'Mot de passe oublié',
     ],
 
     'register' => [
@@ -188,6 +189,34 @@ return [
         'submit' => 'Créer un compte',
         'has_account' => 'Déjà un compte ?',
         'login_link' => 'Se connecter',
+    ],
+
+    'forgot_password' => [
+        'meta_title' => 'Réinitialiser le mot de passe — CertiTest',
+        'heading' => 'Mot de passe oublié ?',
+        'subtitle' => 'Indiquez votre e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.',
+        'email' => 'E-mail',
+        'email_placeholder' => 'vous@exemple.com',
+        'submit' => 'Envoyer le lien de réinitialisation',
+        'back_to_login' => 'Retour à la connexion',
+    ],
+
+    'reset_password' => [
+        'meta_title' => 'Réinitialiser le mot de passe — CertiTest',
+        'heading' => 'Réinitialiser le mot de passe',
+        'subtitle' => 'Choisissez un nouveau mot de passe pour votre compte.',
+        'email' => 'E-mail',
+        'email_placeholder' => 'vous@exemple.com',
+        'password' => 'Nouveau mot de passe',
+        'password_placeholder' => 'Minimum 8 caractères',
+        'password_confirm' => 'Confirmer le nouveau mot de passe',
+        'submit' => 'Réinitialiser le mot de passe',
+    ],
+
+    'passwords' => [
+        'sent' => 'Si cet e-mail est enregistré, vous recevrez un lien de réinitialisation sous peu.',
+        'invalid_token' => 'Ce lien de réinitialisation est invalide ou a expiré. Veuillez en demander un nouveau.',
+        'reset_done' => 'Mot de passe réinitialisé avec succès. Connectez-vous avec votre nouveau mot de passe.',
     ],
 
     'exam' => [

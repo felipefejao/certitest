@@ -175,6 +175,7 @@ return [
         'submit' => 'Entrar',
         'no_account' => 'Ainda não tem conta?',
         'register_link' => 'Cadastre-se',
+        'forgot' => 'Esqueci minha senha',
     ],
 
     'register' => [
@@ -188,6 +189,34 @@ return [
         'submit' => 'Criar conta',
         'has_account' => 'Já tem conta?',
         'login_link' => 'Entrar',
+    ],
+
+    'forgot_password' => [
+        'meta_title' => 'Recuperar senha — CertiTest',
+        'heading' => 'Esqueceu sua senha?',
+        'subtitle' => 'Informe seu e-mail e enviaremos um link para redefinir sua senha.',
+        'email' => 'E-mail',
+        'email_placeholder' => 'seu@email.com',
+        'submit' => 'Enviar link de redefinição',
+        'back_to_login' => 'Voltar para o login',
+    ],
+
+    'reset_password' => [
+        'meta_title' => 'Redefinir senha — CertiTest',
+        'heading' => 'Redefinir senha',
+        'subtitle' => 'Escolha uma nova senha para sua conta.',
+        'email' => 'E-mail',
+        'email_placeholder' => 'seu@email.com',
+        'password' => 'Nova senha',
+        'password_placeholder' => 'Mínimo 8 caracteres',
+        'password_confirm' => 'Confirmar nova senha',
+        'submit' => 'Redefinir senha',
+    ],
+
+    'passwords' => [
+        'sent' => 'Se este e-mail estiver cadastrado, você receberá um link para redefinir a senha em instantes.',
+        'invalid_token' => 'Este link de redefinição é inválido ou expirou. Solicite um novo.',
+        'reset_done' => 'Senha redefinida com sucesso. Entre com sua nova senha.',
     ],
 
     'exam' => [

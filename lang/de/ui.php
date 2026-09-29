@@ -175,6 +175,7 @@ return [
         'submit' => 'Anmelden',
         'no_account' => 'Noch kein Konto?',
         'register_link' => 'Registrieren',
+        'forgot' => 'Passwort vergessen',
     ],
 
     'register' => [
@@ -188,6 +189,34 @@ return [
         'submit' => 'Konto erstellen',
         'has_account' => 'Bereits ein Konto?',
         'login_link' => 'Anmelden',
+    ],
+
+    'forgot_password' => [
+        'meta_title' => 'Passwort zurücksetzen — CertiTest',
+        'heading' => 'Passwort vergessen?',
+        'subtitle' => 'Gib deine E-Mail-Adresse ein und wir senden dir einen Link zum Zurücksetzen deines Passworts.',
+        'email' => 'E-Mail',
+        'email_placeholder' => 'du@beispiel.de',
+        'submit' => 'Link zum Zurücksetzen senden',
+        'back_to_login' => 'Zurück zum Login',
+    ],
+
+    'reset_password' => [
+        'meta_title' => 'Passwort zurücksetzen — CertiTest',
+        'heading' => 'Passwort zurücksetzen',
+        'subtitle' => 'Wähle ein neues Passwort für dein Konto.',
+        'email' => 'E-Mail',
+        'email_placeholder' => 'du@beispiel.de',
+        'password' => 'Neues Passwort',
+        'password_placeholder' => 'Mindestens 8 Zeichen',
+        'password_confirm' => 'Neues Passwort bestätigen',
+        'submit' => 'Passwort zurücksetzen',
+    ],
+
+    'passwords' => [
+        'sent' => 'Falls diese E-Mail-Adresse registriert ist, erhältst du in Kürze einen Link zum Zurücksetzen des Passworts.',
+        'invalid_token' => 'Dieser Link zum Zurücksetzen ist ungültig oder abgelaufen. Bitte fordere einen neuen an.',
+        'reset_done' => 'Passwort erfolgreich zurückgesetzt. Melde dich mit deinem neuen Passwort an.',
     ],
 
     'exam' => [
