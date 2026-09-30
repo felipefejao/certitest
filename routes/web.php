@@ -22,6 +22,8 @@ Route::get('/result/{public_token}', [SharedResultController::class, 'show'])->n
 Route::get('/result/{public_token}/image', [SharedResultController::class, 'image'])->name('results.image');
 Route::get('/result/{public_token}/image.png', [SharedResultController::class, 'imagePng'])->name('results.image.png');
 
+Route::get('/exams/{slug}', [ExamController::class, 'show'])->name('exams.show');
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');
@@ -38,7 +40,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [CandidateController::class, 'dashboard'])->name('dashboard');
-    Route::get('/exams/{slug}', [ExamController::class, 'show'])->name('exams.show');
     Route::post('/exams/{exam:slug}/start', [AttemptController::class, 'start'])->name('exams.start');
     Route::get('/exams-export', [ExamController::class, 'export'])->name('exams.export');
 
