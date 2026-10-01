@@ -15,7 +15,7 @@
 
         <nav class="px-6 py-4">
             <div class="mx-auto flex max-w-6xl items-center justify-between">
-                <img src="{{ asset('images/logo.png') }}" alt="CertiTest" class="h-10 w-auto">
+                <img src="{{ asset('images/logo.png') }}" alt="CertiTest" width="537" height="162" class="h-10 w-auto" decoding="async">
                 <div class="flex items-center gap-4">
                     <button
                         type="button"
@@ -34,6 +34,7 @@
                         <a href="{{ route('login') }}" class="text-sm font-medium text-[#1b1b18] hover:text-[#f53003] dark:text-[#EDEDEC] dark:hover:text-[#FF4433]">{{ __('ui.nav.login') }}</a>
                         <a href="{{ route('register') }}" class="rounded-lg bg-[#1b1b18] px-4 py-2 text-sm font-medium text-white transition hover:bg-black dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white">{{ __('ui.nav.register') }}</a>
                     @endauth
+                    <a href="{{ \App\Support\LocaleUrls::url('blog.index') }}" class="text-sm font-medium text-[#1b1b18] hover:text-[#f53003] dark:text-[#EDEDEC] dark:hover:text-[#FF4433]">{{ __('ui.nav.blog') }}</a>
                     <x-language-selector />
                 </div>
             </div>
@@ -301,6 +302,25 @@
             </section>
         @endif
 
+        @if ($latestPosts->isNotEmpty())
+            <section class="px-6 py-20">
+                <div class="mx-auto max-w-6xl">
+                    <div class="mb-12 flex items-end justify-between">
+                        <h2 class="text-3xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">{{ __('ui.blog.latest') }}</h2>
+                        <a href="{{ \App\Support\LocaleUrls::url('blog.index') }}" class="text-sm font-medium text-[#f53003] hover:underline dark:text-[#FF4433]">{{ __('ui.blog.title') }} →</a>
+                    </div>
+                    <div class="grid gap-6 sm:grid-cols-3">
+                        @foreach ($latestPosts as $post)
+                            <a href="{{ \App\Support\LocaleUrls::url('blog.show', ['slug' => $post->slug]) }}" class="glass-card block p-6 transition hover:-translate-y-1">
+                                <h3 class="mb-2 font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">{{ $post->title }}</h3>
+                                <p class="text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ $post->excerpt }}</p>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        @endif
+
         <section class="px-6 py-20">
             <div class="mx-auto max-w-4xl">
                 <div class="glass-card p-10 text-center lg:p-16">
@@ -321,6 +341,7 @@
                 <p>&copy; {{ date('Y') }} CertiTest. {{ __('ui.home.footer_rights') }}</p>
                 <div class="flex gap-6">
                     <a href="#" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.home.footer_terms') }}</a>
+                    <a href="{{ \App\Support\LocaleUrls::url('blog.index') }}" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.nav.blog') }}</a>
                     <a href="{{ \App\Support\LocaleUrls::url('privacy') }}" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.home.footer_privacy') }}</a>
                     <button type="button" data-consent-reset class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.consent.preferences') }}</button>
                     <a href="https://dev7.com.br" target="_blank" rel="noopener noreferrer" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.home.footer_dev7') }}</a>

@@ -5,6 +5,7 @@ return [
 
     'nav' => [
         'suggest_theme' => 'Sugerir tema',
+        'blog' => 'Blog',
         'dashboard' => 'Dashboard',
         'logout' => 'Sair',
         'login' => 'Entrar',
@@ -299,5 +300,15 @@ return [
                 'a' => 'Use o botão de sugestão na seção de provas da página inicial. A sua sugestão vai direto para nossa equipe.',
             ],
         ],
+    ],
+    'blog' => [
+        'title' => 'Blog',
+        'subtitle' => 'Guias, dicas de estudo e novidades sobre certificações.',
+        'meta_description' => 'Guias e dicas de estudo para certificações: prepare-se melhor com o CertiTest.',
+        'empty' => 'Nenhum artigo publicado ainda.',
+        'read_more' => 'Ler artigo',
+        'back_home' => 'Voltar ao início',
+        'published_on' => 'Publicado em :date',
+        'latest' => 'Últimos artigos',
     ],
 ];

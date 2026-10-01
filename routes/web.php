@@ -8,6 +8,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\SharedResultController;
 use App\Http\Controllers\SitemapController;
@@ -25,6 +26,8 @@ Route::post('/sugestoes', [ThemeSuggestionController::class, 'store'])
 
 Route::get('/exams/{slug}', [ExamController::class, 'show'])->name('exams.show');
 Route::get('/categorias/{slug}', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('/blog', [PostController::class, 'index'])->name('blog.index');
+Route::get('/blog/{slug}', [PostController::class, 'show'])->name('blog.show');
 
 Route::get('/result/{public_token}', [SharedResultController::class, 'show'])->name('results.public');
 Route::get('/result/{public_token}/image', [SharedResultController::class, 'image'])->name('results.image');
@@ -39,6 +42,8 @@ Route::prefix('{locale}')
         Route::view('/privacidade', 'privacy')->name('privacy');
         Route::get('/exams/{slug}', [ExamController::class, 'show'])->name('exams.show');
         Route::get('/categorias/{slug}', [CategoryController::class, 'show'])->name('categories.show');
+        Route::get('/blog', [PostController::class, 'index'])->name('blog.index');
+        Route::get('/blog/{slug}', [PostController::class, 'show'])->name('blog.show');
         Route::get('/result/{public_token}', [SharedResultController::class, 'show'])->name('results.public');
     });
 

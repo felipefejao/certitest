@@ -5,6 +5,7 @@ namespace App\Actions\Seo;
 use App\Http\Middleware\SetLocale;
 use App\Models\Exam;
 use App\Models\ExamCategory;
+use App\Models\Post;
 use App\Support\LocaleUrls;
 
 class BuildSitemapAction
@@ -17,6 +18,7 @@ class BuildSitemapAction
         $pages = [
             ['home', []],
             ['privacy', []],
+            ['blog.index', []],
         ];
 
         foreach (
@@ -29,6 +31,10 @@ class BuildSitemapAction
 
         foreach (Exam::published()->orderBy('slug')->pluck('slug') as $slug) {
             $pages[] = ['exams.show', ['slug' => $slug]];
+        }
+
+        foreach (Post::published()->orderBy('slug')->pluck('slug') as $slug) {
+            $pages[] = ['blog.show', ['slug' => $slug]];
         }
 
         $urls = [];

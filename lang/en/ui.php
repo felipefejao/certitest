@@ -5,6 +5,7 @@ return [
 
     'nav' => [
         'suggest_theme' => 'Suggest a topic',
+        'blog' => 'Blog',
         'dashboard' => 'Dashboard',
         'logout' => 'Log out',
         'login' => 'Log in',
@@ -299,5 +300,15 @@ return [
                 'a' => 'Use the suggestion button in the exams section of the home page. Your suggestion goes straight to our team.',
             ],
         ],
+    ],
+    'blog' => [
+        'title' => 'Blog',
+        'subtitle' => 'Guides, study tips and certification news.',
+        'meta_description' => 'Study guides and tips for certifications: prepare better with CertiTest.',
+        'empty' => 'No articles published yet.',
+        'read_more' => 'Read article',
+        'back_home' => 'Back to home',
+        'published_on' => 'Published on :date',
+        'latest' => 'Latest articles',
     ],
 ];

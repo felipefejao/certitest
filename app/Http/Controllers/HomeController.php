@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\Home\GetSiteStatsAction;
 use App\Models\Exam;
 use App\Models\ExamCategory;
+use App\Models\Post;
 use App\Support\LocaleUrls;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -30,6 +31,11 @@ class HomeController extends Controller
             'category_slug' => $exam->category?->slug,
             'questions_count' => count($exam->questions ?? []),
         ]);
+
+        $latestPosts = Post::published()
+            ->orderByDesc('published_at')
+            ->limit(3)
+            ->get(['id', 'title', 'slug', 'excerpt', 'published_at']);
 
         $stats = $getSiteStats->handle();
 
@@ -68,6 +74,6 @@ class HomeController extends Controller
             ],
         ];
 
-        return view('home', compact('exams', 'categories', 'stats', 'captchaQuestion', 'faqs', 'jsonLd'));
+        return view('home', compact('exams', 'categories', 'stats', 'captchaQuestion', 'faqs', 'jsonLd', 'latestPosts'));
     }
 }

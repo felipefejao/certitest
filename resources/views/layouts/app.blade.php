@@ -11,6 +11,9 @@
 
         <meta name="description" content="@yield('description', 'Teste seus conhecimentos e prepare-se para certificações com o CertiTest.')">
         <meta name="robots" content="@yield('meta_robots', 'index, follow')">
+        @if (config('services.google.site_verification'))
+        <meta name="google-site-verification" content="{{ config('services.google.site_verification') }}">
+        @endif
         <link rel="canonical" href="@yield('canonical', url()->current())">
 
         @php($localeAlternates = \App\Support\LocaleUrls::alternates())

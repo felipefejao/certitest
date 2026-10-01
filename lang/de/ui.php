@@ -5,6 +5,7 @@ return [
 
     'nav' => [
         'suggest_theme' => 'Thema vorschlagen',
+        'blog' => 'Blog',
         'dashboard' => 'Dashboard',
         'logout' => 'Abmelden',
         'login' => 'Anmelden',
@@ -299,5 +300,15 @@ return [
                 'a' => 'Nutze den Vorschlags-Button im Prüfungsbereich der Startseite. Dein Vorschlag geht direkt an unser Team.',
             ],
         ],
+    ],
+    'blog' => [
+        'title' => 'Blog',
+        'subtitle' => 'Leitfäden, Lerntipps und Neuigkeiten zu Zertifizierungen.',
+        'meta_description' => 'Lernleitfäden und Tipps für Zertifizierungen: mit CertiTest besser vorbereitet.',
+        'empty' => 'Noch keine Artikel veröffentlicht.',
+        'read_more' => 'Artikel lesen',
+        'back_home' => 'Zur Startseite',
+        'published_on' => 'Veröffentlicht am :date',
+        'latest' => 'Neueste Artikel',
     ],
 ];

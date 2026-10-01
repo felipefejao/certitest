@@ -39,4 +39,8 @@ return [
         'client' => env('ADSENSE_CLIENT_ID'),
     ],
 
+    'google' => [
+        'site_verification' => env('GOOGLE_SITE_VERIFICATION'),
+    ],
+
 ];
