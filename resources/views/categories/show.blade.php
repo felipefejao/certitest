@@ -56,7 +56,7 @@
                             </div>
                             <p class="mb-6 flex-1 text-sm leading-relaxed text-[#706f6c] dark:text-[#A1A09A]">{{ $exam->description }}</p>
                             <a
-                                href="{{ route('exams.show', $exam->slug) }}"
+                                href="{{ \App\Support\LocaleUrls::url('exams.show', ['slug' => $exam->slug]) }}"
                                 class="mt-auto inline-flex w-full items-center justify-center rounded-lg bg-[#1b1b18] py-2.5 text-sm font-semibold text-white transition hover:bg-black dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white"
                             >
                                 {{ __('ui.home.start_exam') }}

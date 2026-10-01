@@ -13,6 +13,14 @@
         <meta name="robots" content="@yield('meta_robots', 'index, follow')">
         <link rel="canonical" href="@yield('canonical', url()->current())">
 
+        @php($localeAlternates = \App\Support\LocaleUrls::alternates())
+        @foreach ($localeAlternates as $alternateLocale => $alternateUrl)
+        <link rel="alternate" hreflang="{{ str_replace('_', '-', $alternateLocale) }}" href="{{ $alternateUrl }}">
+        @endforeach
+        @if ($localeAlternates)
+        <link rel="alternate" hreflang="x-default" href="{{ $localeAlternates['pt_BR'] }}">
+        @endif
+
         <meta property="og:locale" content="{{ app()->getLocale() }}">
         @foreach (\App\Http\Middleware\SetLocale::SUPPORTED as $supportedLocale)
             @if ($supportedLocale !== app()->getLocale())

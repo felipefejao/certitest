@@ -14,7 +14,7 @@
     <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
         <p class="text-sm text-[#706f6c] dark:text-[#A1A09A]">
             {{ __('ui.consent.message') }}
-            <a href="{{ route('privacy') }}" class="font-medium text-[#1b1b18] underline underline-offset-2 transition hover:text-[#f53003] dark:text-[#EDEDEC] dark:hover:text-[#FF4433]">
+            <a href="{{ \App\Support\LocaleUrls::url('privacy') }}" class="font-medium text-[#1b1b18] underline underline-offset-2 transition hover:text-[#f53003] dark:text-[#EDEDEC] dark:hover:text-[#FF4433]">
                 {{ __('ui.consent.policy_link') }}
             </a>
         </p>

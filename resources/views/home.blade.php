@@ -225,13 +225,13 @@
                                     </span>
                                 </div>
                                 @if ($exam['category'])
-                                    <a href="{{ route('categories.show', $exam['category_slug']) }}" class="mb-3 inline-flex w-fit rounded-full border border-[#e3e3e0] px-2.5 py-0.5 text-xs font-medium text-[#706f6c] transition hover:border-[#f53003]/40 hover:text-[#1b1b18] dark:border-[#3E3E3A] dark:text-[#A1A09A] dark:hover:text-[#EDEDEC]">
+                                    <a href="{{ \App\Support\LocaleUrls::url('categories.show', ['slug' => $exam['category_slug']]) }}" class="mb-3 inline-flex w-fit rounded-full border border-[#e3e3e0] px-2.5 py-0.5 text-xs font-medium text-[#706f6c] transition hover:border-[#f53003]/40 hover:text-[#1b1b18] dark:border-[#3E3E3A] dark:text-[#A1A09A] dark:hover:text-[#EDEDEC]">
                                         {{ $exam['category'] }}
                                     </a>
                                 @endif
                                 <p class="mb-6 flex-1 text-sm leading-relaxed text-[#706f6c] dark:text-[#A1A09A]">{{ $exam['description'] }}</p>
                                 <a
-                                    href="{{ Route::has('exams.show') ? route('exams.show', $exam['slug']) : url('/exams/'.$exam['slug']) }}"
+                                    href="{{ \App\Support\LocaleUrls::url('exams.show', ['slug' => $exam['slug']]) }}"
                                     class="mt-auto inline-flex w-full items-center justify-center rounded-lg bg-[#1b1b18] py-2.5 text-sm font-semibold text-white transition hover:bg-black dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white"
                                 >
                                     {{ __('ui.home.start_exam') }}
@@ -321,7 +321,7 @@
                 <p>&copy; {{ date('Y') }} CertiTest. {{ __('ui.home.footer_rights') }}</p>
                 <div class="flex gap-6">
                     <a href="#" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.home.footer_terms') }}</a>
-                    <a href="{{ route('privacy') }}" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.home.footer_privacy') }}</a>
+                    <a href="{{ \App\Support\LocaleUrls::url('privacy') }}" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.home.footer_privacy') }}</a>
                     <button type="button" data-consent-reset class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.consent.preferences') }}</button>
                     <a href="https://dev7.com.br" target="_blank" rel="noopener noreferrer" class="transition hover:text-[#1b1b18] dark:hover:text-[#EDEDEC]">{{ __('ui.home.footer_dev7') }}</a>
                 </div>
@@ -405,7 +405,7 @@
                     @enderror
 
                     <p class="text-xs text-[#706f6c] dark:text-[#A1A09A]">
-                        {!! __('ui.home.modal_privacy_notice', ['link' => '<a href="'.route('privacy').'" class="font-medium underline underline-offset-2 transition hover:text-[#f53003] dark:hover:text-[#FF4433]">'.__('ui.home.footer_privacy').'</a>']) !!}
+                        {!! __('ui.home.modal_privacy_notice', ['link' => '<a href="'.\App\Support\LocaleUrls::url('privacy').'" class="font-medium underline underline-offset-2 transition hover:text-[#f53003] dark:hover:text-[#FF4433]">'.__('ui.home.footer_privacy').'</a>']) !!}
                     </p>
 
                     <div class="flex justify-end gap-3 pt-2">

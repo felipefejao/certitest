@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\Home\GetSiteStatsAction;
 use App\Models\Exam;
 use App\Models\ExamCategory;
+use App\Support\LocaleUrls;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -44,13 +45,13 @@ class HomeController extends Controller
                 [
                     '@type' => 'Organization',
                     'name' => config('app.name'),
-                    'url' => route('home'),
+                    'url' => LocaleUrls::url('home'),
                     'logo' => asset('images/logo.png'),
                 ],
                 [
                     '@type' => 'WebSite',
                     'name' => config('app.name'),
-                    'url' => route('home'),
+                    'url' => LocaleUrls::url('home'),
                     'inLanguage' => str_replace('_', '-', app()->getLocale()),
                 ],
                 [

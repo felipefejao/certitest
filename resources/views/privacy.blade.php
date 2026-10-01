@@ -13,7 +13,7 @@
 
         <section class="px-6 py-20">
             <div class="mx-auto max-w-3xl">
-                <a href="{{ route('home') }}" class="mb-6 inline-flex items-center gap-1 text-sm text-[#706f6c] hover:text-[#1b1b18] dark:text-[#A1A09A] dark:hover:text-[#EDEDEC]">
+                <a href="{{ \App\Support\LocaleUrls::url('home') }}" class="mb-6 inline-flex items-center gap-1 text-sm text-[#706f6c] hover:text-[#1b1b18] dark:text-[#A1A09A] dark:hover:text-[#EDEDEC]">
                     ← {{ __('ui.exam.back') }}
                 </a>
 

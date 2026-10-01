@@ -110,7 +110,7 @@
                     <x-share-result
                         :title="$exam['name'].' — CertiTest'"
                         :description="__('ui.exam.share_description', ['exam' => $exam['name']])"
-                        :url="route('exams.show', $exam['slug'])"
+                        :url="\App\Support\LocaleUrls::url('exams.show', ['slug' => $exam['slug']])"
                     />
                 </div>
 
@@ -119,7 +119,7 @@
                         <h2 class="mb-6 text-xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">{{ __('ui.exam.related') }}</h2>
                         <div class="grid gap-4 sm:grid-cols-3">
                             @foreach ($relatedExams as $related)
-                                <a href="{{ route('exams.show', $related->slug) }}" class="glass-card block p-4 transition hover:-translate-y-1">
+                                <a href="{{ \App\Support\LocaleUrls::url('exams.show', ['slug' => $related->slug]) }}" class="glass-card block p-4 transition hover:-translate-y-1">
                                     <p class="font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">{{ $related->name }}</p>
                                     <p class="mt-1 text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ trans_choice('ui.home.questions_count', $related->questions_count) }}</p>
                                 </a>

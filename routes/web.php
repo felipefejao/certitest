@@ -30,6 +30,18 @@ Route::get('/result/{public_token}', [SharedResultController::class, 'show'])->n
 Route::get('/result/{public_token}/image', [SharedResultController::class, 'image'])->name('results.image');
 Route::get('/result/{public_token}/image.png', [SharedResultController::class, 'imagePng'])->name('results.image.png');
 
+// Localized public routes (pt_BR stays unprefixed as the default).
+Route::prefix('{locale}')
+    ->where(['locale' => 'en|de|fr'])
+    ->name('localized.')
+    ->group(function () {
+        Route::get('/', HomeController::class)->name('home');
+        Route::view('/privacidade', 'privacy')->name('privacy');
+        Route::get('/exams/{slug}', [ExamController::class, 'show'])->name('exams.show');
+        Route::get('/categorias/{slug}', [CategoryController::class, 'show'])->name('categories.show');
+        Route::get('/result/{public_token}', [SharedResultController::class, 'show'])->name('results.public');
+    });
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');

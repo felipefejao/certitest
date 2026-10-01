@@ -2,31 +2,49 @@
 
 namespace App\Actions\Seo;
 
+use App\Http\Middleware\SetLocale;
 use App\Models\Exam;
 use App\Models\ExamCategory;
+use App\Support\LocaleUrls;
 
 class BuildSitemapAction
 {
     /**
-     * @return array<int, string>
+     * @return array<int, array{loc: string, alternates: array<string, string>}>
      */
     public function handle(): array
     {
-        $examUrls = Exam::published()
-            ->orderBy('slug')
-            ->pluck('slug')
-            ->map(fn (string $slug): string => route('exams.show', $slug));
-
-        $categoryUrls = ExamCategory::whereHas('exams', fn ($query) => $query->published())
-            ->orderBy('slug')
-            ->pluck('slug')
-            ->map(fn (string $slug): string => route('categories.show', $slug));
-
-        return [
-            route('home'),
-            route('privacy'),
-            ...$categoryUrls,
-            ...$examUrls,
+        $pages = [
+            ['home', []],
+            ['privacy', []],
         ];
+
+        foreach (
+            ExamCategory::whereHas('exams', fn ($query) => $query->published())
+                ->orderBy('slug')
+                ->pluck('slug') as $slug
+        ) {
+            $pages[] = ['categories.show', ['slug' => $slug]];
+        }
+
+        foreach (Exam::published()->orderBy('slug')->pluck('slug') as $slug) {
+            $pages[] = ['exams.show', ['slug' => $slug]];
+        }
+
+        $urls = [];
+
+        foreach ($pages as [$name, $parameters]) {
+            $alternates = [];
+
+            foreach (SetLocale::SUPPORTED as $locale) {
+                $alternates[$locale] = LocaleUrls::url($name, $parameters, $locale);
+            }
+
+            foreach ($alternates as $url) {
+                $urls[] = ['loc' => $url, 'alternates' => $alternates];
+            }
+        }
+
+        return $urls;
     }
 }

@@ -5,6 +5,7 @@
         'de' => 'Deutsch',
         'fr' => 'Français',
     ];
+    $localeAlternates = \App\Support\LocaleUrls::alternates();
 @endphp
 
 <select
@@ -14,7 +15,7 @@
 >
     @foreach ($locales as $locale => $label)
         <option
-            value="{{ route('locale.update', ['locale' => $locale, 'redirect' => request()->getRequestUri()]) }}"
+            value="{{ $localeAlternates[$locale] ?? route('locale.update', ['locale' => $locale, 'redirect' => request()->getRequestUri()]) }}"
             @selected(app()->getLocale() === $locale)
         >
             {{ $label }}

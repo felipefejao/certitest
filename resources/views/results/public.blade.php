@@ -56,7 +56,7 @@
 
                     <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
                         <a
-                            href="{{ route('home') }}"
+                            href="{{ \App\Support\LocaleUrls::url('home') }}"
                             class="inline-flex items-center justify-center rounded-lg bg-[#1b1b18] px-8 py-3 text-sm font-medium text-white transition hover:bg-black dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white"
                         >
                             {{ __('ui.public_result.cta') }}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\ExamStatus;
 use App\Models\Exam;
+use App\Support\LocaleUrls;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -33,12 +34,12 @@ class ExamController extends Controller
 
         $metaDescription = $exam->meta_description ?? $exam->description ?? __('ui.home.meta_description');
         $breadcrumbs = [
-            ['name' => config('app.name'), 'url' => route('home')],
+            ['name' => config('app.name'), 'url' => LocaleUrls::url('home')],
         ];
         if ($exam->category !== null) {
-            $breadcrumbs[] = ['name' => $exam->category->name, 'url' => route('categories.show', $exam->category->slug)];
+            $breadcrumbs[] = ['name' => $exam->category->name, 'url' => LocaleUrls::url('categories.show', ['slug' => $exam->category->slug])];
         }
-        $breadcrumbs[] = ['name' => $exam->name, 'url' => route('exams.show', $exam->slug)];
+        $breadcrumbs[] = ['name' => $exam->name, 'url' => LocaleUrls::url('exams.show', ['slug' => $exam->slug])];
 
         $jsonLd = [
             '@context' => 'https://schema.org',
@@ -48,13 +49,13 @@ class ExamController extends Controller
                     'name' => $exam->name,
                     'about' => $exam->category?->name ?? $exam->name,
                     'description' => $metaDescription,
-                    'url' => route('exams.show', $exam->slug),
+                    'url' => LocaleUrls::url('exams.show', ['slug' => $exam->slug]),
                     'inLanguage' => str_replace('_', '-', app()->getLocale()),
                     'isAccessibleForFree' => true,
                     'provider' => [
                         '@type' => 'Organization',
                         'name' => config('app.name'),
-                        'url' => route('home'),
+                        'url' => LocaleUrls::url('home'),
                     ],
                 ],
                 [

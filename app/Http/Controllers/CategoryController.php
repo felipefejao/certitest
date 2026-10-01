@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Exam;
 use App\Models\ExamCategory;
+use App\Support\LocaleUrls;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -20,8 +21,8 @@ class CategoryController extends Controller
         abort_if($exams->isEmpty(), 404);
 
         $breadcrumbs = [
-            ['name' => config('app.name'), 'url' => route('home')],
-            ['name' => $category->name, 'url' => route('categories.show', $category->slug)],
+            ['name' => config('app.name'), 'url' => LocaleUrls::url('home')],
+            ['name' => $category->name, 'url' => LocaleUrls::url('categories.show', ['slug' => $category->slug])],
         ];
 
         $jsonLd = [
