@@ -13,7 +13,7 @@ return [
     ],
 
     'home' => [
-        'meta_title' => 'CertiTest — Test your knowledge and prepare for certifications',
+        'meta_title' => 'CertiTest — Free certification practice exams',
         'meta_description' => 'Take practice exams, discover your performance, and prepare better for your next certifications with CertiTest.',
         'badge' => 'Premium practice exam platform',
         'hero_line1' => 'Test your',

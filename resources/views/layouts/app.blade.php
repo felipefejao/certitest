@@ -25,11 +25,6 @@
         @endif
 
         <meta property="og:locale" content="{{ app()->getLocale() }}">
-        @foreach (\App\Http\Middleware\SetLocale::SUPPORTED as $supportedLocale)
-            @if ($supportedLocale !== app()->getLocale())
-        <meta property="og:locale:alternate" content="{{ $supportedLocale }}">
-            @endif
-        @endforeach
 
         <meta property="og:title" content="@yield('title', config('app.name', 'Laravel'))">
         <meta property="og:description" content="@yield('description', 'Teste seus conhecimentos e prepare-se para certificações com o CertiTest.')">

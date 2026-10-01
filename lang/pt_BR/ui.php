@@ -13,7 +13,7 @@ return [
     ],
 
     'home' => [
-        'meta_title' => 'CertiTest — Teste seus conhecimentos e prepare-se para certificações',
+        'meta_title' => 'CertiTest — Simulados de certificação online',
         'meta_description' => 'Faça simulados, descubra seu desempenho e prepare-se melhor para suas próximas certificações com o CertiTest.',
         'badge' => 'Plataforma de simulados premium',
         'hero_line1' => 'Teste seus',

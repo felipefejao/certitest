@@ -13,7 +13,7 @@ return [
     ],
 
     'home' => [
-        'meta_title' => 'CertiTest — Teste dein Wissen und bereite dich auf Zertifizierungen vor',
+        'meta_title' => 'CertiTest — Übungsprüfungen für Zertifizierungen',
         'meta_description' => 'Absolviere Übungsprüfungen, entdecke deine Leistung und bereite dich mit CertiTest besser auf deine nächsten Zertifizierungen vor.',
         'badge' => 'Premium-Plattform für Übungsprüfungen',
         'hero_line1' => 'Teste dein',

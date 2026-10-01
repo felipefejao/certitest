@@ -13,7 +13,7 @@ return [
     ],
 
     'home' => [
-        'meta_title' => 'CertiTest — Testez vos connaissances et préparez vos certifications',
+        'meta_title' => 'CertiTest — Examens blancs de certification',
         'meta_description' => 'Passez des examens blancs, découvrez vos performances et préparez-vous mieux pour vos prochaines certifications avec CertiTest.',
         'badge' => 'Plateforme premium d\'examens blancs',
         'hero_line1' => 'Testez vos',

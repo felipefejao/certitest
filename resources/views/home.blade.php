@@ -455,14 +455,36 @@
             }
 
             const suggestionModal = document.getElementById('suggestion-modal');
+            const SUGGESTION_DISMISS_KEY = 'certitest_suggestion_dismissed_v1';
+            const SUGGESTION_DISMISS_TTL = 60 * 60 * 1000; // 1 hora
+
+            function suggestionModalDismissed() {
+                try {
+                    const dismissedAt = Number(localStorage.getItem(SUGGESTION_DISMISS_KEY));
+                    return Number.isFinite(dismissedAt) && dismissedAt > 0 && (Date.now() - dismissedAt) < SUGGESTION_DISMISS_TTL;
+                } catch (error) {
+                    return false;
+                }
+            }
+
+            function markSuggestionModalDismissed() {
+                try {
+                    localStorage.setItem(SUGGESTION_DISMISS_KEY, String(Date.now()));
+                } catch (error) {
+                    // localStorage indisponível (modo privado etc.) — modal simplesmente volta a abrir.
+                }
+            }
 
             function openSuggestionModal() {
                 suggestionModal.classList.remove('hidden');
             }
 
             function closeSuggestionModal() {
+                markSuggestionModalDismissed();
                 suggestionModal.classList.add('hidden');
             }
+
+            suggestionModal.querySelector('form')?.addEventListener('submit', markSuggestionModalDismissed);
 
             document.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape') {
@@ -470,7 +492,7 @@
                 }
             });
 
-            if (suggestionModal.dataset.autoOpen === '1') {
+            if (suggestionModal.dataset.autoOpen === '1' && !suggestionModalDismissed()) {
                 openSuggestionModal();
             }
         </script>
