@@ -2,6 +2,7 @@
 
 @section('title', __('ui.public_result.meta_title', ['name' => $user->name, 'score' => round($attempt->percentage, 0)]))
 @section('description', __('ui.public_result.meta_description', ['name' => $user->name, 'exam' => $exam['name']]))
+@section('meta_robots', 'noindex')
 @section('og_image', route('results.image.png', $attempt->public_token))
 
 @section('content')

@@ -10,6 +10,15 @@
         <title>@yield('title', config('app.name', 'Laravel'))</title>
 
         <meta name="description" content="@yield('description', 'Teste seus conhecimentos e prepare-se para certificações com o CertiTest.')">
+        <meta name="robots" content="@yield('meta_robots', 'index, follow')">
+        <link rel="canonical" href="@yield('canonical', url()->current())">
+
+        <meta property="og:locale" content="{{ app()->getLocale() }}">
+        @foreach (\App\Http\Middleware\SetLocale::SUPPORTED as $supportedLocale)
+            @if ($supportedLocale !== app()->getLocale())
+        <meta property="og:locale:alternate" content="{{ $supportedLocale }}">
+            @endif
+        @endforeach
 
         <meta property="og:title" content="@yield('title', config('app.name', 'Laravel'))">
         <meta property="og:description" content="@yield('description', 'Teste seus conhecimentos e prepare-se para certificações com o CertiTest.')">

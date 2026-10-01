@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', __('ui.forgot_password.meta_title'))
+@section('meta_robots', 'noindex')
 
 @section('content')
     <main class="flex min-h-screen items-center justify-center px-6 py-20">
