@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\ExamCategories\Schemas;
 
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
@@ -25,6 +27,24 @@ class ExamCategoryForm
                     ->required()
                     ->maxLength(255)
                     ->unique('exam_categories', 'slug', ignoreRecord: true),
+
+                Section::make('SEO')
+                    ->columnSpanFull()
+                    ->collapsible()
+                    ->collapsed()
+                    ->schema([
+                        Textarea::make('description')
+                            ->label('Descrição (página pública)')
+                            ->rows(4),
+
+                        TextInput::make('meta_title')
+                            ->label('Título meta')
+                            ->maxLength(255),
+
+                        Textarea::make('meta_description')
+                            ->label('Meta descrição')
+                            ->rows(2),
+                    ]),
             ]);
     }
 }

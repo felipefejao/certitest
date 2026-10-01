@@ -274,4 +274,30 @@ return [
         'rights_text' => 'Vous pouvez revoir ou modifier votre consentement aux cookies à tout moment à l\'aide du bouton ci-dessous.',
         'legal_placeholder' => '[Texte juridique final à faire réviser par un professionnel de la conformité : base légale, durées de conservation, délégué à la protection des données (DPO) et canal de contact.]',
     ],
+
+    'faq' => [
+        'title' => 'Questions fréquentes',
+        'items' => [
+            [
+                'q' => 'Comment fonctionnent les examens blancs de CertiTest ?',
+                'a' => 'Choisissez un examen, répondez aux questions à votre rythme et terminez pour voir la correction complète, avec votre score et la révision de vos erreurs.',
+            ],
+            [
+                'q' => 'Faut-il un compte pour passer un examen blanc ?',
+                'a' => 'Oui. L\'inscription est gratuite et prend quelques secondes — elle enregistre votre historique, suit vos performances et génère votre certificat.',
+            ],
+            [
+                'q' => 'Puis-je refaire un examen ?',
+                'a' => 'Oui. Vous pouvez démarrer une nouvelle tentative autant de fois que vous voulez ; chacune est enregistrée séparément dans votre historique.',
+            ],
+            [
+                'q' => 'Puis-je partager mon résultat ?',
+                'a' => 'Oui. Chaque tentative terminée génère une page publique avec certificat, prête à partager sur WhatsApp, LinkedIn et d\'autres réseaux.',
+            ],
+            [
+                'q' => 'Comment suggérer un nouveau sujet d\'examen ?',
+                'a' => 'Utilisez le bouton de suggestion dans la section des examens de la page d\'accueil. Votre suggestion va directement à notre équipe.',
+            ],
+        ],
+    ],
 ];

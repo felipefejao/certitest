@@ -31,12 +31,12 @@ class ExamController extends Controller
                 ->get(['id', 'name', 'slug', 'description', 'questions', 'exam_category_id'])
             : collect();
 
-        $metaDescription = $exam->meta_description ?? $exam->description;
+        $metaDescription = $exam->meta_description ?? $exam->description ?? __('ui.home.meta_description');
         $breadcrumbs = [
             ['name' => config('app.name'), 'url' => route('home')],
         ];
         if ($exam->category !== null) {
-            $breadcrumbs[] = ['name' => $exam->category->name, 'url' => route('home').'#exams'];
+            $breadcrumbs[] = ['name' => $exam->category->name, 'url' => route('categories.show', $exam->category->slug)];
         }
         $breadcrumbs[] = ['name' => $exam->name, 'url' => route('exams.show', $exam->slug)];
 

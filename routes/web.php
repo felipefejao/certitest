@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttemptController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocaleController;
@@ -23,6 +24,7 @@ Route::post('/sugestoes', [ThemeSuggestionController::class, 'store'])
     ->name('suggestions.store');
 
 Route::get('/exams/{slug}', [ExamController::class, 'show'])->name('exams.show');
+Route::get('/categorias/{slug}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::get('/result/{public_token}', [SharedResultController::class, 'show'])->name('results.public');
 Route::get('/result/{public_token}/image', [SharedResultController::class, 'image'])->name('results.image');

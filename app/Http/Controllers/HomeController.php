@@ -36,6 +36,37 @@ class HomeController extends Controller
         $request->session()->put('suggestion_captcha_answer', $captcha[0] + $captcha[1]);
         $captchaQuestion = __('ui.suggestion.captcha', ['a' => $captcha[0], 'b' => $captcha[1]]);
 
-        return view('home', compact('exams', 'categories', 'stats', 'captchaQuestion'));
+        $faqs = __('ui.faq.items');
+
+        $jsonLd = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'Organization',
+                    'name' => config('app.name'),
+                    'url' => route('home'),
+                    'logo' => asset('images/logo.png'),
+                ],
+                [
+                    '@type' => 'WebSite',
+                    'name' => config('app.name'),
+                    'url' => route('home'),
+                    'inLanguage' => str_replace('_', '-', app()->getLocale()),
+                ],
+                [
+                    '@type' => 'FAQPage',
+                    'mainEntity' => array_map(
+                        fn (array $faq): array => [
+                            '@type' => 'Question',
+                            'name' => $faq['q'],
+                            'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq['a']],
+                        ],
+                        is_array($faqs) ? $faqs : [],
+                    ),
+                ],
+            ],
+        ];
+
+        return view('home', compact('exams', 'categories', 'stats', 'captchaQuestion', 'faqs', 'jsonLd'));
     }
 }

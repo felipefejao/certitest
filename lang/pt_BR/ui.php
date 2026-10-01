@@ -274,4 +274,30 @@ return [
         'rights_text' => 'Você pode revisar ou alterar seu consentimento de cookies a qualquer momento usando o botão abaixo.',
         'legal_placeholder' => '[Texto jurídico final a revisar por um profissional de compliance: base legal, prazos de retenção, encarregado de dados (DPO) e canal de contato.]',
     ],
+
+    'faq' => [
+        'title' => 'Perguntas frequentes',
+        'items' => [
+            [
+                'q' => 'Como funcionam os simulados do CertiTest?',
+                'a' => 'Escolha uma prova, responda às questões no seu ritmo e finalize para ver a correção completa, com percentual de acerto e revisão dos erros.',
+            ],
+            [
+                'q' => 'Preciso criar uma conta para fazer um simulado?',
+                'a' => 'Sim. O cadastro é gratuito e leva segundos — serve para salvar seu histórico, acompanhar seu desempenho e gerar seu certificado.',
+            ],
+            [
+                'q' => 'Posso refazer uma prova?',
+                'a' => 'Sim. Você pode iniciar uma nova tentativa quantas vezes quiser; cada uma é registrada separadamente no seu histórico.',
+            ],
+            [
+                'q' => 'Posso compartilhar meu resultado?',
+                'a' => 'Sim. Cada tentativa finalizada gera uma página pública com certificado, pronta para compartilhar no WhatsApp, LinkedIn e outras redes.',
+            ],
+            [
+                'q' => 'Como sugiro um novo tema de prova?',
+                'a' => 'Use o botão de sugestão na seção de provas da página inicial. A sua sugestão vai direto para nossa equipe.',
+            ],
+        ],
+    ],
 ];

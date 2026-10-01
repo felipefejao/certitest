@@ -3,6 +3,12 @@
 @section('title', __('ui.home.meta_title'))
 @section('description', __('ui.home.meta_description'))
 
+@push('head')
+    <script type="application/ld+json">
+        @json($jsonLd, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+    </script>
+@endpush
+
 @section('content')
     <main class="relative overflow-hidden">
         <div class="absolute inset-0 -z-10 bg-gradient-to-br from-[#fff0ed] via-[#fffaf6] to-[#f0f9ff] dark:from-[#1a0a05] dark:via-[#0a0a0a] dark:to-[#0a0a0a]"></div>
@@ -219,9 +225,9 @@
                                     </span>
                                 </div>
                                 @if ($exam['category'])
-                                    <span class="mb-3 inline-flex w-fit rounded-full border border-[#e3e3e0] px-2.5 py-0.5 text-xs font-medium text-[#706f6c] dark:border-[#3E3E3A] dark:text-[#A1A09A]">
+                                    <a href="{{ route('categories.show', $exam['category_slug']) }}" class="mb-3 inline-flex w-fit rounded-full border border-[#e3e3e0] px-2.5 py-0.5 text-xs font-medium text-[#706f6c] transition hover:border-[#f53003]/40 hover:text-[#1b1b18] dark:border-[#3E3E3A] dark:text-[#A1A09A] dark:hover:text-[#EDEDEC]">
                                         {{ $exam['category'] }}
-                                    </span>
+                                    </a>
                                 @endif
                                 <p class="mb-6 flex-1 text-sm leading-relaxed text-[#706f6c] dark:text-[#A1A09A]">{{ $exam['description'] }}</p>
                                 <a
@@ -271,6 +277,29 @@
                 </div>
             </div>
         </section>
+
+        @if (is_array($faqs) && count($faqs) > 0)
+            <section class="px-6 py-20">
+                <div class="mx-auto max-w-4xl">
+                    <div class="mb-12 text-center">
+                        <h2 class="text-3xl font-bold text-[#1b1b18] dark:text-[#EDEDEC]">{{ __('ui.faq.title') }}</h2>
+                    </div>
+                    <div class="space-y-3">
+                        @foreach ($faqs as $faq)
+                            <details class="glass-card group p-5">
+                                <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-[#1b1b18] dark:text-[#EDEDEC] [&::-webkit-details-marker]:hidden">
+                                    {{ $faq['q'] }}
+                                    <svg class="h-5 w-5 shrink-0 text-[#706f6c] transition group-open:rotate-180 dark:text-[#A1A09A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </summary>
+                                <p class="mt-3 text-sm leading-relaxed text-[#706f6c] dark:text-[#A1A09A]">{{ $faq['a'] }}</p>
+                            </details>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        @endif
 
         <section class="px-6 py-20">
             <div class="mx-auto max-w-4xl">

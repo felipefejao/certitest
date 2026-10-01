@@ -274,4 +274,30 @@ return [
         'rights_text' => 'You can review or change your cookie consent at any time using the button below.',
         'legal_placeholder' => '[Final legal text to be reviewed by a compliance professional: legal basis, retention periods, data protection officer (DPO) and contact channel.]',
     ],
+
+    'faq' => [
+        'title' => 'Frequently asked questions',
+        'items' => [
+            [
+                'q' => 'How do CertiTest practice exams work?',
+                'a' => 'Pick an exam, answer the questions at your own pace and finish to see the full grading, with your score and a review of your mistakes.',
+            ],
+            [
+                'q' => 'Do I need an account to take a practice exam?',
+                'a' => 'Yes. Signing up is free and takes seconds — it saves your history, tracks your performance and generates your certificate.',
+            ],
+            [
+                'q' => 'Can I retake an exam?',
+                'a' => 'Yes. You can start a new attempt as many times as you like; each one is recorded separately in your history.',
+            ],
+            [
+                'q' => 'Can I share my result?',
+                'a' => 'Yes. Every finished attempt generates a public page with a certificate, ready to share on WhatsApp, LinkedIn and other networks.',
+            ],
+            [
+                'q' => 'How do I suggest a new exam topic?',
+                'a' => 'Use the suggestion button in the exams section of the home page. Your suggestion goes straight to our team.',
+            ],
+        ],
+    ],
 ];

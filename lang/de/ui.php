@@ -274,4 +274,30 @@ return [
         'rights_text' => 'Du kannst deine Cookie-Einwilligung jederzeit über die Schaltfläche unten überprüfen oder ändern.',
         'legal_placeholder' => '[Endgültiger Rechtstext, noch von einer Compliance-Fachkraft zu prüfen: Rechtsgrundlage, Aufbewahrungsfristen, Datenschutzbeauftragte:r (DPO) und Kontaktkanal.]',
     ],
+
+    'faq' => [
+        'title' => 'Häufige Fragen',
+        'items' => [
+            [
+                'q' => 'Wie funktionieren die Übungsprüfungen auf CertiTest?',
+                'a' => 'Wähle eine Prüfung, beantworte die Fragen in deinem Tempo und schließe ab, um die vollständige Auswertung mit deinem Ergebnis und einer Fehlerübersicht zu sehen.',
+            ],
+            [
+                'q' => 'Brauche ich ein Konto, um eine Übungsprüfung zu machen?',
+                'a' => 'Ja. Die Registrierung ist kostenlos und dauert nur Sekunden — sie speichert deinen Verlauf, verfolgt deine Leistung und erstellt dein Zertifikat.',
+            ],
+            [
+                'q' => 'Kann ich eine Prüfung wiederholen?',
+                'a' => 'Ja. Du kannst beliebig oft einen neuen Versuch starten; jeder wird separat in deinem Verlauf gespeichert.',
+            ],
+            [
+                'q' => 'Kann ich mein Ergebnis teilen?',
+                'a' => 'Ja. Jede abgeschlossene Prüfung erzeugt eine öffentliche Seite mit Zertifikat, die du auf WhatsApp, LinkedIn und anderen Netzwerken teilen kannst.',
+            ],
+            [
+                'q' => 'Wie schlage ich ein neues Prüfungsthema vor?',
+                'a' => 'Nutze den Vorschlags-Button im Prüfungsbereich der Startseite. Dein Vorschlag geht direkt an unser Team.',
+            ],
+        ],
+    ],
 ];
