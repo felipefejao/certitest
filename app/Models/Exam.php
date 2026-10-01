@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['name', 'slug', 'description', 'exam_category_id', 'status', 'questions'])]
+#[Fillable(['name', 'slug', 'description', 'meta_title', 'meta_description', 'intro', 'exam_category_id', 'status', 'questions'])]
 class Exam extends Model
 {
     /** @use HasFactory<ExamFactory> */

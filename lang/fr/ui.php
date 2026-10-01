@@ -227,6 +227,9 @@ return [
         'rule_unanswered' => 'Les questions sans réponse seront considérées comme incorrectes.',
         'cancel' => 'Annuler',
         'share_description' => 'Passez l\'examen blanc :exam sur CertiTest et testez vos connaissances !',
+        'login_cta' => 'Connectez-vous pour commencer',
+        'register_cta' => 'Créer un compte gratuit',
+        'related' => 'Examens similaires',
     ],
 
     'attempt' => [

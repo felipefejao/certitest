@@ -227,6 +227,9 @@ return [
         'rule_unanswered' => 'Unbeantwortete Fragen gelten als falsch.',
         'cancel' => 'Abbrechen',
         'share_description' => 'Mach die Übungsprüfung :exam auf CertiTest und teste dein Wissen!',
+        'login_cta' => 'Anmelden, um zu starten',
+        'register_cta' => 'Kostenloses Konto erstellen',
+        'related' => 'Ähnliche Prüfungen',
     ],
 
     'attempt' => [

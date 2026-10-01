@@ -227,6 +227,9 @@ return [
         'rule_unanswered' => 'Unanswered questions count as incorrect.',
         'cancel' => 'Cancel',
         'share_description' => 'Take the :exam practice exam on CertiTest and test your knowledge!',
+        'login_cta' => 'Log in to start',
+        'register_cta' => 'Create a free account',
+        'related' => 'Related exams',
     ],
 
     'attempt' => [

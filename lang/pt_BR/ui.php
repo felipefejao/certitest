@@ -227,6 +227,9 @@ return [
         'rule_unanswered' => 'Questões não respondidas serão consideradas incorretas.',
         'cancel' => 'Cancelar',
         'share_description' => 'Faça o simulado :exam no CertiTest e teste seus conhecimentos!',
+        'login_cta' => 'Entrar para começar',
+        'register_cta' => 'Criar conta grátis',
+        'related' => 'Provas relacionadas',
     ],
 
     'attempt' => [

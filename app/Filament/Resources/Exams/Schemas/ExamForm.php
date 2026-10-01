@@ -8,6 +8,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
@@ -53,6 +54,24 @@ class ExamForm
                             ->unique('exam_categories', 'slug'),
                     ])
                     ->native(false),
+
+                Section::make('SEO')
+                    ->columnSpanFull()
+                    ->collapsible()
+                    ->collapsed()
+                    ->schema([
+                        TextInput::make('meta_title')
+                            ->label('Título meta')
+                            ->maxLength(255),
+
+                        Textarea::make('meta_description')
+                            ->label('Meta descrição')
+                            ->rows(2),
+
+                        Textarea::make('intro')
+                            ->label('Texto introdutório (página pública)')
+                            ->rows(6),
+                    ]),
 
                 Select::make('status')
                     ->label('Status')

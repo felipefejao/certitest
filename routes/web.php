@@ -22,11 +22,11 @@ Route::post('/sugestoes', [ThemeSuggestionController::class, 'store'])
     ->middleware('throttle:5,1')
     ->name('suggestions.store');
 
+Route::get('/exams/{slug}', [ExamController::class, 'show'])->name('exams.show');
+
 Route::get('/result/{public_token}', [SharedResultController::class, 'show'])->name('results.public');
 Route::get('/result/{public_token}/image', [SharedResultController::class, 'image'])->name('results.image');
 Route::get('/result/{public_token}/image.png', [SharedResultController::class, 'imagePng'])->name('results.image.png');
-
-Route::get('/exams/{slug}', [ExamController::class, 'show'])->name('exams.show');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
