@@ -22,9 +22,12 @@ class RedirectToCanonicalHost
         }
 
         $canonicalHost = parse_url((string) config('app.url'), PHP_URL_HOST);
-        $requestHost = $request->getHost();
 
-        if (! is_string($canonicalHost) || $canonicalHost === '' || strcasecmp($canonicalHost, $requestHost) === 0) {
+        if (! is_string($canonicalHost) || $canonicalHost === '' || $this->isPrivateHost($canonicalHost)) {
+            return $next($request);
+        }
+
+        if (strcasecmp($canonicalHost, $request->getHost()) === 0) {
             return $next($request);
         }
 
@@ -38,5 +41,16 @@ class RedirectToCanonicalHost
         $status = $request->isMethodCacheable() ? 301 : 308;
 
         return redirect()->to($target, $status);
+    }
+
+    /**
+     * A localhost/private canonical host means APP_URL was never configured
+     * for this environment — redirecting to it would take the site down.
+     */
+    private function isPrivateHost(string $host): bool
+    {
+        return filter_var($host, FILTER_VALIDATE_IP) !== false
+            || str_ends_with(strtolower($host), '.test')
+            || in_array(strtolower($host), ['localhost', 'localhost.localdomain'], true);
     }
 }
