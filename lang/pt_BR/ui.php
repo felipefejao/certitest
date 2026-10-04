@@ -220,6 +220,15 @@ return [
         'reset_done' => 'Senha redefinida com sucesso. Entre com sua nova senha.',
     ],
 
+    'verify_email' => [
+        'meta_title' => 'Verificar e-mail — CertiTest',
+        'heading' => 'Verifique seu e-mail',
+        'subtitle' => 'Enviamos um link de verificação para :email. Clique nele para ativar sua conta.',
+        'resend' => 'Reenviar e-mail de verificação',
+        'sent' => 'Um novo link de verificação foi enviado para seu e-mail.',
+        'logout' => 'Sair',
+    ],
+
     'exam' => [
         'back' => 'Voltar',
         'before_start' => 'Antes de começar',

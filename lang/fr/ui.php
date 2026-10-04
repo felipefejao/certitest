@@ -220,6 +220,15 @@ return [
         'reset_done' => 'Mot de passe réinitialisé avec succès. Connectez-vous avec votre nouveau mot de passe.',
     ],
 
+    'verify_email' => [
+        'meta_title' => 'Vérifier l\'e-mail — CertiTest',
+        'heading' => 'Vérifiez votre e-mail',
+        'subtitle' => 'Nous avons envoyé un lien de vérification à :email. Cliquez dessus pour activer votre compte.',
+        'resend' => 'Renvoyer l\'e-mail de vérification',
+        'sent' => 'Un nouveau lien de vérification a été envoyé à votre adresse e-mail.',
+        'logout' => 'Se déconnecter',
+    ],
+
     'exam' => [
         'back' => 'Retour',
         'before_start' => 'Avant de commencer',

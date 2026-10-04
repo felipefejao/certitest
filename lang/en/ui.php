@@ -220,6 +220,15 @@ return [
         'reset_done' => 'Password updated successfully. Log in with your new password.',
     ],
 
+    'verify_email' => [
+        'meta_title' => 'Verify email — CertiTest',
+        'heading' => 'Verify your email',
+        'subtitle' => 'We sent a verification link to :email. Click it to activate your account.',
+        'resend' => 'Resend verification email',
+        'sent' => 'A new verification link has been sent to your email.',
+        'logout' => 'Log out',
+    ],
+
     'exam' => [
         'back' => 'Back',
         'before_start' => 'Before you start',
