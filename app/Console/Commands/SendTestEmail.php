@@ -30,7 +30,7 @@ class SendTestEmail extends Command
 
         Mail::to($email)->send(new TestEmail);
 
-        $this->info("Test email sent to {$email} via [".config('mail.default').'] mailer.');
+        $this->info("Test email queued for {$email} via [".config('mail.default').'] mailer.');
 
         return self::SUCCESS;
     }
