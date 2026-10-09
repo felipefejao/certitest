@@ -47,6 +47,13 @@ class ExamsTable
                     ->numeric()
                     ->sortable(),
 
+                TextColumn::make('slug')
+                    ->label('Link')
+                    ->formatStateUsing(fn (string $state): string => "/exams/{$state}")
+                    ->url(fn (Exam $record): string => route('exams.show', $record->slug))
+                    ->openUrlInNewTab()
+                    ->icon('heroicon-m-arrow-top-right-on-square'),
+
                 TextColumn::make('created_at')
                     ->label('Criado em')
                     ->dateTime('d/m/Y H:i')
