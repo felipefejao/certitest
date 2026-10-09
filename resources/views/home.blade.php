@@ -355,7 +355,7 @@
             </div>
         @endif
 
-        <div id="suggestion-modal" data-auto-open="{{ session('suggestion_success') ? '0' : '1' }}" class="{{ $errors->hasAny(['theme', 'email', 'captcha', 'website']) ? '' : 'hidden' }} fixed inset-0 z-50 flex items-center justify-center px-4">
+        <div id="suggestion-modal" class="{{ $errors->hasAny(['theme', 'email', 'captcha', 'website']) ? '' : 'hidden' }} fixed inset-0 z-50 flex items-center justify-center px-4">
             <div class="absolute inset-0 bg-gradient-to-br from-[#f53003]/30 via-black/40 to-black/50 backdrop-blur-sm" onclick="closeSuggestionModal()"></div>
 
             <div class="glass-card relative w-full max-w-md p-8 shadow-2xl ring-2 ring-[#f53003]/40 dark:ring-[#FF4433]/40">
@@ -455,46 +455,20 @@
             }
 
             const suggestionModal = document.getElementById('suggestion-modal');
-            const SUGGESTION_DISMISS_KEY = 'certitest_suggestion_dismissed_v1';
-            const SUGGESTION_DISMISS_TTL = 60 * 60 * 1000; // 1 hora
-
-            function suggestionModalDismissed() {
-                try {
-                    const dismissedAt = Number(localStorage.getItem(SUGGESTION_DISMISS_KEY));
-                    return Number.isFinite(dismissedAt) && dismissedAt > 0 && (Date.now() - dismissedAt) < SUGGESTION_DISMISS_TTL;
-                } catch (error) {
-                    return false;
-                }
-            }
-
-            function markSuggestionModalDismissed() {
-                try {
-                    localStorage.setItem(SUGGESTION_DISMISS_KEY, String(Date.now()));
-                } catch (error) {
-                    // localStorage indisponível (modo privado etc.) — modal simplesmente volta a abrir.
-                }
-            }
 
             function openSuggestionModal() {
                 suggestionModal.classList.remove('hidden');
             }
 
             function closeSuggestionModal() {
-                markSuggestionModalDismissed();
                 suggestionModal.classList.add('hidden');
             }
 
-            suggestionModal.querySelector('form')?.addEventListener('submit', markSuggestionModalDismissed);
-
             document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape') {
+                if (event.key === 'Escape' && !suggestionModal.classList.contains('hidden')) {
                     closeSuggestionModal();
                 }
             });
-
-            if (suggestionModal.dataset.autoOpen === '1' && !suggestionModalDismissed()) {
-                openSuggestionModal();
-            }
         </script>
     </main>
 @endsection

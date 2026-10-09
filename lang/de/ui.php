@@ -220,6 +220,15 @@ return [
         'reset_done' => 'Passwort erfolgreich zurückgesetzt. Melde dich mit deinem neuen Passwort an.',
     ],
 
+    'verify_email' => [
+        'meta_title' => 'E-Mail bestätigen — CertiTest',
+        'heading' => 'Bestätige deine E-Mail',
+        'subtitle' => 'Wir haben einen Bestätigungslink an :email gesendet. Klicke darauf, um dein Konto zu aktivieren.',
+        'resend' => 'Bestätigungs-E-Mail erneut senden',
+        'sent' => 'Ein neuer Bestätigungslink wurde an deine E-Mail gesendet.',
+        'logout' => 'Abmelden',
+    ],
+
     'exam' => [
         'back' => 'Zurück',
         'before_start' => 'Bevor du startest',

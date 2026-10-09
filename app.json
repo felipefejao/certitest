@@ -42,11 +42,36 @@
             "value": "database"
         },
         "MAIL_MAILER": {
-            "value": "log"
+            "value": "smtp"
+        },
+        "MAIL_SCHEME": {
+            "value": "smtp"
+        },
+        "MAIL_HOST": {
+            "value": "smtp.gmail.com"
+        },
+        "MAIL_PORT": {
+            "value": "587"
+        },
+        "MAIL_USERNAME": {
+            "description": "Conta Google Workspace usada para envio de e-mail (ex.: noreply@seudominio.com).",
+            "required": true
+        },
+        "MAIL_PASSWORD": {
+            "description": "App password da conta Google (16 caracteres, gerada em myaccount.google.com/apppasswords).",
+            "required": true
+        },
+        "MAIL_FROM_ADDRESS": {
+            "description": "Endereço remetente. Deve ser igual ao MAIL_USERNAME ou um alias 'Send mail as' verificado no Gmail.",
+            "required": true
         }
     },
     "formation": {
         "web": {
+            "quantity": 1,
+            "size": "basic"
+        },
+        "worker": {
             "quantity": 1,
             "size": "basic"
         }
