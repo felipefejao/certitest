@@ -20,8 +20,8 @@
             "value": "false"
         },
         "APP_KEY": {
-            "description": "Chave de criptografia do Laravel (opcional). Gere com `php artisan key:generate --show`. Se deixada vazia, uma chave temporária é gerada a cada boot (sessões são invalidadas em reinícios).",
-            "required": false
+            "description": "Chave de criptografia do Laravel (formato base64:...). Gere com `php artisan key:generate --show`. Obrigatória — sem ela, cada dyno usa uma chave efémera diferente e links assinados/sessões falham entre dynos.",
+            "required": true
         },
         "DB_CONNECTION": {
             "value": "pgsql"
